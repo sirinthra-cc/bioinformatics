@@ -1,0 +1,121 @@
+{% load staticfiles i18n %}
+
+<header class="top-bar">
+    <div class="container-fluid top-nav">
+        <div class="row">
+{#            <form id="set_lang" action="/i18n/setlang/" method="post">#}
+{#                {% csrf_token %}#}
+{#                {% get_current_language as LANGUAGE_CODE %}#}
+{#                <div class="">#}
+{#                    <input name="next" type="hidden" value="{{ request.path }}" />#}
+{#                    {{ LANGUAGE_CODE }}#}
+{#                    {% if LANGUAGE_CODE == 'en-us' %}#}
+{#                        <a class="set_lang_code lang-switch  current" data-language='en' href="#">EN</a>#}
+{#                    {% else %}#}
+{#                        <a class="set_lang_code lang-switch" data-language='en' href="#">EN</a>#}
+{#                    {% endif %}#}
+{##}
+{#                    {% if LANGUAGE_CODE = 'th' %}#}
+{#                        <a class="set_lang_code lang-switch current" data-language='th' href="#">TH</a>#}
+{#                    {% else %}#}
+{#                        <a class="set_lang_code lang-switch" data-language='th' href="#">TH</a>#}
+{#                    {% endif %}#}
+{#                    <input name="language" id="language_code_tag" type="hidden" value="" />#}
+{#                </div>#}
+{#            </form>#}
+            <div class="col-md-4 responsive-fix top-mid">
+                <div class="notification-nav">
+                    <ul class="clearfix">
+                        <li class="dropdown"><a href="#" data-toggle="dropdown" class="hide-small-device waves-effect"><i class="fa fa-envelope"></i><span class="alert-bubble">15</span></a>
+                            <div role="menu" class="dropdown-menu message-dropdown msg-lists fadeInUp hide-small-device">
+                                <div class="message-wrap">
+                                    <h4>You have 15 new messages</h4>
+                                    <ul class="clearfix">
+                                        <li class="clearfix">
+                                            <a href="#" class="message-thumb"><img src="{% static 'matmix/images/avatar/adellecharles.jpg' %}" alt="image">
+                                            </a><a href="#" class="message-intro"><span class="message-meta">Adellecharles </span>Nunc aliquam dolor... <span class="message-time">today at 10:20 pm</span></a>
+                                        </li>
+                                        <li class="clearfix">
+                                            <a href="#" class="message-thumb"><img src="{% static 'matmix/images/avatar/allisongrayce.jpg' %}" alt="image">
+                                            </a><a href="#" class="message-intro"><span class="message-meta">Allisongrayce </span>In hac habitasse ... <span class="message-time">today at 8:29 pm</span></a>
+                                        </li>
+                                        <li class="clearfix">
+                                            <a href="#" class="message-thumb"><img src="{% static 'matmix/images/avatar/amarkdalen.jpg' %}" alt="image">
+                                            </a><a href="#" class="message-intro"><span class="message-meta">Amarkdalen </span>Suspendisse ac mauris ... <span class="message-time">yesterday at 12:29 pm</span></a>
+                                        </li>
+                                        <li class="clearfix">
+                                            <a href="#" class="message-thumb"><img src="{% static 'matmix/images/avatar/annapickard.jpg' %}" alt="image">
+                                            </a><a href="#" class="message-intro"><span class="message-meta">Annapickard </span>Vivamus lacinia facilisis... <span class="message-time">yesterday at 11:48 pm</span></a>
+                                        </li>
+                                        <li class="clearfix">
+                                            <a href="#" class="message-thumb"><img src="{% static 'matmix/images/avatar/bobbyjkane.jpg' %}" alt="image">
+                                            </a><a href="#" class="message-intro"><span class="message-meta">Bobbyjkane </span>Donec vel iaculis ... <span class="message-time">1 month ago</span></a>
+                                        </li>
+                                        <li class="clearfix">
+                                            <a href="#" class="message-thumb"><img src="{% static 'matmix/images/avatar/chexee.jpg' %}" alt="image">
+                                            </a><a href="#" class="message-intro"><span class="message-meta">Chexee </span> Curabitur eget blandit...<span class="message-time">3 months ago</span></a>
+                                        </li>
+                                        <li class="clearfix">
+                                            <a href="#" class="message-thumb"><img src="{% static 'matmix/images/avatar/coreyweb.jpg' %}" alt="image">
+                                            </a><a href="#" class="message-intro"><span class="message-meta">Coreyweb </span>Etiam molestie nulla... <span class="message-time">1 year ago</span></a>
+                                        </li>
+                                    </ul>
+                                    <a class="btn btn-primary btn-block notification-btn clearfix waves-effect" href="#"><span>View All</span></a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="dropdown"><a href="#" data-toggle="dropdown" class="hide-small-device waves-effect "><i class="fa fa-bell"></i><span class="alert-bubble">10</span></a>
+                            <div role="menu" class="dropdown-menu notification-dropdown fadeInUp noty-lists hide-small-device">
+                                <div class="notification-wrap">
+                                    <h4>You have 10 new notifications</h4>
+                                    <ul>
+                                        <li><a href="#" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Pellentesque semper posuere. <span class="notification-time clearfix">3 Min Ago</span></span></a>
+                                        </li>
+                                        <li><a href="#" class="clearfix"><span class="ni w-orange"><i class="fa fa-life-ring"></i></span><span class="notification-message">Nulla commodo sem at purus. <span class="notification-time clearfix">1 Hours Ago</span></span></a>
+                                        </li>
+                                        <li><a href="#" class="clearfix"><span class="ni w-bondi-blue"><i class="fa fa-star-o"></i></span><span class="notification-message">Fusce condimentum turpis. <span class="notification-time clearfix">3 Hours Ago</span></span></a>
+                                        </li>
+                                        <li><a href="#" class="clearfix"><span class="ni w-blue"><i class="fa fa-trophy"></i></span><span class="notification-message">Pellentesque habitant morbi. <span class="notification-time clearfix">Yesterday</span></span></a>
+                                        </li>
+                                        <li><a href="#" class="clearfix"><span class="ni w-brown"><i class="fa fa-bolt"></i></span><span class="notification-message">Fusce bibendum lacus mauris.<span class="notification-time clearfix">1 Month Ago</span></span></a>
+                                        </li>
+                                        <li><a href="#" class="clearfix"><span class="ni w-dark-yellow"><i class="fa fa-bookmark-o"></i></span><span class="notification-message">Donec id mi placerat, scelerisque.<span class="notification-time clearfix">3 Months Ago</span></span></a>
+                                        </li>
+                                    </ul>
+                                    <a class="btn btn-primary btn-block notification-btn clearfix waves-effect" href="#"><span>View All</span></a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="pull-left mobile-search">
+                        <span class=" waves-effect search-btn">
+                        <i class="fa fa-search"></i>
+                        </span>
+                </div>
+            </div>
+            <div class="pull-right">
+                <div class="user-nav" style="margin-right: 0;">
+                    <ul>
+                        <li class="dropdown" style="border-right: none; padding-right: 0;">
+                            <a data-toggle="dropdown" href="#" class="clearfix dropdown-toggle waves-effect waves-block waves-classic">
+                                <span class="user-info">Sirinthra Chantharaj<cite>sirinthra.cc@gmail.com</cite></span>
+                                <span class="user-thumb"><img src="{% static 'matmix/images/avatar/sirinthra.jpg' %}" alt="image"></span>
+                            </a>
+                            <ul role="menu" class="dropdown-menu fadeInUp">
+                                <li><a href="#"><span class="user-nav-icon"><i class="fa fa-briefcase"></i></span><span class="user-nav-label">My Account</span></a>
+                                </li>
+                                <li><a href="#"><span class="user-nav-icon"><i class="fa fa-user"></i></span><span class="user-nav-label">View Profile</span></a>
+                                </li>
+                                <li><a href="#"><span class="user-nav-icon"><i class="fa fa-cogs"></i></span><span class="user-nav-label">Settings</span></a>
+                                </li>
+                                <li><a href="#"><span class="user-nav-icon"><i class="fa fa-lock"></i></span><span class="user-nav-label">Logout</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

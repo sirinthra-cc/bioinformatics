@@ -1,0 +1,53 @@
+{% load i18n %}
+
+<div class="dt-pagination">
+    <nav>
+    <ul class="pagination">
+        {% if has_previous %}
+            <li>
+                <button class="bi-btn-paginator"
+                    name="page"
+                    value="{{ previous_page }}"
+                    type="submit"
+                    form="{{ form_target }}">
+                    <i class="flaticon-arrows-3"></i>
+                </button>
+            </li>
+        {% endif %}
+        {% for pg in page_range %}
+            {% if page_number == pg %}
+                <li>
+                    <button class="bi-btn-paginator-active"
+                        name="page"
+                        value="{{ pg }}"
+                        type="submit"
+                        form="{{ form_target }}">
+                        {{ pg }}
+                    </button>
+                </li>
+            {% else %}
+                <li>
+                    <button class="bi-btn-paginator"
+                        name="page"
+                        value="{{ pg }}"
+                        type="submit"
+                        form="{{ form_target }}">
+                        {{ pg }}
+                    </button>
+                </li>
+            {% endif %}
+        {% endfor %}
+        {% if has_next %}
+            <li>
+                <button class="bi-btn-paginator"
+                    name="page"
+                    value="{{ next_page }}"
+                    type="submit"
+                    form="{{ form_target }}">
+                    <i class="flaticon-arrows-4"></i>
+                </button>
+            </li>
+        {% endif %}
+    </ul>
+    </nav>
+</div>

@@ -1,0 +1,25 @@
+{% load staticfiles i18n %}
+{% load widget_tweaks %}
+
+<div class="form-group {% if element.errors %}has-error{% endif %} required">
+    <div class="col-lg-{{ label_width|default:'3' }} col-md-{{ label_width|default:'3' }}">
+        <span class="">{{ element.label_tag }}</span>
+        <span class="bi-star">
+            {% if element.field.required %}*{% endif %}
+        </span>
+    </div>
+    <div class="col-lg-{{ input_width|default:'9' }} col-md-{{ input_width|default:'9' }}">
+    {% if element.errors and not hide_errors %}
+        {% render_field element class+="form-control error" class+=element_class %}
+        <small class="help-block">
+          {% for error in element.errors %}
+            {{ error }}
+          {% endfor %}
+        </small>
+    {% else %}
+        {% render_field element class+="form-control" class+=element_class %}
+    {% endif %}
+    </div>
+</div>
+{% if width %}<div class="clearfix"></div>{% endif %}
+<div class="line-input"></div>
