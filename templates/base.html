@@ -41,9 +41,11 @@
     {% include 'partials/sidebar.html' %}
     <!-- Main content -->
     <main class="main">
+        {% block breadcrumb %}{% endblock %}
         <div class="container-fluid">
-            {% block main-container %}
-            {% endblock %}
+            <div class="animated fadeIn">
+                {% block main-container %}{% endblock %}
+            </div>
         </div>
         <!-- /.conainer-fluid -->
     </main>
