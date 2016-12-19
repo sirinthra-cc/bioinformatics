@@ -43,53 +43,18 @@
 	-->
 
 <body class="navbar-fixed sidebar-nav fixed-nav">
-    <header class="navbar">
-        <div class="container-fluid">
-            <button class="navbar-toggler mobile-toggler hidden-lg-up" type="button">☰</button>
-            <a class="navbar-brand" href="#"></a>
-            <ul class="nav navbar-nav hidden-md-down">
-                <li class="nav-item">
-                    <a class="nav-link navbar-toggler layout-toggler" href="#">☰</a>
-                </li>
 
-            </ul>
-        </div>
-    </header>
-
-    <div class="sidebar">
-
-        <nav class="sidebar-nav">
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html"><i class="icon-speedometer"></i> Dashboard <span class="tag tag-info">NEW</span></a>
-                </li>
-
-            </ul>
-        </nav>
-    </div>
-
+    {% include 'partials/header.html' %}
+    {% include 'partials/sidebar.html' %}
     <!-- Main content -->
     <main class="main">
-
-
         <div class="container-fluid">
-
-
-
-
+            {% block main-container %}
+            {% endblock %}
         </div>
         <!-- /.conainer-fluid -->
     </main>
-
-
-    <footer class="footer">
-        <span class="text-left">
-            <a href="http://coreui.io">CoreUI</a> © 2016 creativeLabs.
-        </span>
-        <span class="float-xs-right">
-            Powered by <a href="http://coreui.io">CoreUI</a>
-        </span>
-    </footer>
+    {% include 'partials/footer.html' %}
 
     <!-- Bootstrap and necessary plugins -->
     <script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
@@ -97,10 +62,7 @@
     <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'bower_components/pace/pace.min.js' %}"></script>
 
-
-
     <!-- GenesisUI main scripts -->
-
     <script src="{% static 'js/app.js' %}"></script>
 
     <!-- Plugins and scripts required by this views -->
