@@ -19,45 +19,51 @@
         <form action="{{ action }}" method="post">
             {% csrf_token %}
             <div class="card-header"><strong>De Novo Input Form</strong></div>
-{#            {{ form }}#}
-
             <div class="card-block">
+                {# Child file #}
                 <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="file-input">{{ form.children.label }}</label>
+                    <label class="col-md-3 form-control-label" for="file-input">Child File</label>
                     <div class="col-md-9">
-                        <input type="file" id="file-input" name="file-input">
+                        <input type="file" id="child-file" name="file-input">
                     </div>
                 </div>
-{#                 Children files#}
+                {# Mother file #}
                 <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="file-multiple-input">Children files</label>
+                    <label class="col-md-3 form-control-label" for="file-input">Mother File</label>
                     <div class="col-md-9">
-                        <input type="file" id="children-files" name="children-files" multiple="">
+                        <input type="file" id="mother-file" name="file-input">
                     </div>
                 </div>
-{#                 Parent files#}
+                {# Father file #}
                 <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="file-multiple-input">Parent files</label>
+                    <label class="col-md-3 form-control-label" for="file-input">Father File</label>
                     <div class="col-md-9">
-                        <input type="file" id="parent-files" name="parent-files" multiple="">
+                        <input type="file" id="father-file" name="file-input">
                     </div>
                 </div>
-{#                 Output file name#}
-                <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="text-input">Output file name</label>
-                    <div class="col-md-9">
-                        <input type="text" id="output-name" name="output-name" class="form-control" placeholder="Text">
-                        <span class="help-block">This is a help text</span>
-                    </div>
-                </div>
+
+                <div style="display: none">{% include 'snippets/normal_field.html' with element=form.child %}</div>
+                <div style="display: none">{% include 'snippets/normal_field.html' with element=form.mother %}</div>
+                <div style="display: none">{% include 'snippets/normal_field.html' with element=form.father %}</div>
+                {% include 'snippets/normal_field.html' with element=form.output_name %}
             </div>
 
             <div class="card-footer">
-                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
-                <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+                <button type="submit" class="btn btn-sm btn-primary" id="submit"><i class="fa fa-dot-circle-o"></i> Submit</button>
+{#                <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>#}
             </div>
         </form>
 
 
     </div>
+{% endblock %}
+
+{% block my-script %}
+    <script type="text/javascript">
+        document.getElementById("submit").onclick = function () {
+            document.getElementById("id_child").value = document.getElementById("child-file").value;
+            document.getElementById("id_mother").value = document.getElementById("mother-file").value;
+            document.getElementById("id_father").value = document.getElementById("father-file").value;
+        };
+    </script>
 {% endblock %}
