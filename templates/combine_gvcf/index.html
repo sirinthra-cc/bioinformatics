@@ -18,17 +18,24 @@
             {% csrf_token %}
             <div class="card-header"><strong>Combine GVCF Input Form</strong></div>
             <div class="card-block">
-                {# Input files #}
+                {# Input file 1 #}
                 <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="file-input">Input File</label>
+                    <label class="col-md-3 form-control-label" for="file-input">Input File 1</label>
                     <div class="col-md-9">
-                        <input type="file" id="input-file" name="file-input">
+                        <input type="file" id="input-file1" name="file-input">
+                    </div>
+                </div>
+                {# Input file 2 #}
+                <div class="form-group row">
+                    <label class="col-md-3 form-control-label" for="file-input">Input File 2</label>
+                    <div class="col-md-9">
+                        <input type="file" id="input-file2" name="file-input">
                     </div>
                 </div>
 
 
-                <div style="display: none">{% include 'snippets/normal_field.html' with element=form.input %}</div>
-                {# have to change, but not sure how #}
+                <div style="display: none">{% include 'snippets/normal_field.html' with element=form.input1 %}</div>
+                <div style="display: none">{% include 'snippets/normal_field.html' with element=form.input2 %}</div>
 
                 {% include 'snippets/normal_field.html' with element=form.output_name %}
             </div>
@@ -46,8 +53,8 @@
 {% block my-script %}
     <script type="text/javascript">
         document.getElementById("submit").onclick = function () {
-            document.getElementById("id_input").value = document.getElementById("input-file").value;
-            {# have to change, don't know how #}
+            document.getElementById("id_input1").value = document.getElementById("input-file1").value;
+            document.getElementById("id_input2").value = document.getElementById("input-file2").value;
         };
     </script>
 {% endblock %}

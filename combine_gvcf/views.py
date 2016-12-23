@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .forms import CombineGvcfForm
-# from combine_gvcf import combine_gvcf
+from combine_gvcf import combine_gvcf
 
 
 # ExAC = "D:/databases/ExAC.r0.3.1.sites.vep.csv"
@@ -14,10 +14,10 @@ def index(request):
     if request.method == 'POST':
         form = CombineGvcfForm(request.POST)
         if form.is_valid():
-            input = form.cleaned_data['input']
+            input1 = form.cleaned_data['input 1']
+            input2 = form.cleaned_data['input 2']
 
-            # de_novo.de_novo([input,], mother_file=mother, father_file=father, exac_file=ExAC, exac_ac=10,
-            #                 thwes_file=THWES153, thwes_ac=1)
+            combine_gvcf.combine_gvcf([input1,input2])
             return HttpResponseRedirect('/combine-gvcf/')
         else:
             print("invalid")

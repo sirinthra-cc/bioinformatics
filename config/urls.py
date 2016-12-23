@@ -18,6 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^$', include('phenotype_influencing.urls')),
+    url(r'^combine-gvcf', include('combine_gvcf.urls')),
     url(r'^de-novo/', include('de_novo.urls')),
     url(r'^phenotype/', include('phenotype_influencing.urls')),
     url(r'^admin/', admin.site.urls),
