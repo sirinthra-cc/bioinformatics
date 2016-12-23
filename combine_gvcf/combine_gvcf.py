@@ -34,7 +34,8 @@ def excelWrite(col,row,wdata):
         ws['%s%s%d' % (chr(col/26+64), chr(col%26+65), row)] = wdata
 
 
-def combine_gvcf(flist):
+def combine_gvcf(input_file1,input_file2):
+    flist = [input_file1,input_file2]
     for file in flist:
         with open(file) as f:
             for line in f:
