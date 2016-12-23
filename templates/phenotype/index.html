@@ -4,6 +4,7 @@
 {% block breadcrumb %}
     <ol class="breadcrumb">
         <li class="breadcrumb-item">Phenotype Influencing</li>
+        <li class="breadcrumb-item active">hiPhive</li>
         <li class="breadcrumb-menu">
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                 <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
@@ -25,16 +26,8 @@
                         <input type="file" id="input-file" name="file-input">
                     </div>
                 </div>
-                {# Mother file #}
-                <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="file-input">Output Path</label>
-                    <div class="col-md-9">
-                        <input type="file" id="output-path" name="file-input">
-                    </div>
-                </div>
 
                 <div style="display: none">{% include 'snippets/normal_field.html' with element=form.input %}</div>
-                <div style="display: none">{% include 'snippets/normal_field.html' with element=form.output_path %}</div>
                 {% include 'snippets/normal_field.html' with element=form.output_name %}
             </div>
 
