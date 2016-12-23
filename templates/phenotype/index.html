@@ -17,23 +17,23 @@
     <div class="card">
         <form action="{{ action }}" method="post">
             {% csrf_token %}
-            <div class="card-header"><strong>Phenotype Influencing Form</strong></div>
+            <div class="card-header"><strong>hiPhive Form</strong></div>
             <div class="card-block">
                 {# Input file #}
                 <div class="form-group row">
-                    <label class="col-md-3 form-control-label" for="file-input">Input File</label>
+                    <label class="col-md-3 form-control-label" for="file-input">Input File:</label>
                     <div class="col-md-9">
                         <input type="file" id="input-file" name="file-input">
                     </div>
                 </div>
 
                 <div style="display: none">{% include 'snippets/normal_field.html' with element=form.input %}</div>
+                {% include 'snippets/normal_field.html' with element=form.hpo %}
                 {% include 'snippets/normal_field.html' with element=form.output_name %}
             </div>
 
             <div class="card-footer">
                 <button type="submit" class="btn btn-sm btn-primary" id="submit"><i class="fa fa-dot-circle-o"></i> Submit</button>
-{#                <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>#}
             </div>
         </form>
 
@@ -45,7 +45,6 @@
     <script type="text/javascript">
         document.getElementById("submit").onclick = function () {
             document.getElementById("id_input").value = document.getElementById("input-file").value;
-            document.getElementById("id_output_path").value = document.getElementById("output-path").value;
         };
     </script>
 {% endblock %}
