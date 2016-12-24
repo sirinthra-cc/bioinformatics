@@ -8,8 +8,10 @@ from config.settings import BASE_DIR
 
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-compile_list = ['java','-Xms2g','-Xmx4g','-jar',BASE_DIR+'\\tools\\exomiser-cli-7.2.1.jar','--prioritiser=hiphive','-I','AD','-F','1', '--full-analysis','true','-f','VCF','--output-pass-variants-only','true','--hpo-ids']
-# ['[HPO_IDs]','-v', '[input_file_name.vcf]','-o','[output_file_name]']
+compile_list = ['java','-Xms2g','-Xmx4g','-jar',
+                BASE_DIR+'\\tools\\exomiser-cli-7.2.1\\exomiser-cli-7.2.1.jar',
+                '--prioritiser=hiphive','-I','AD','-F','1', '--full-analysis','true','-f','VCF',
+                '--output-pass-variants-only','true','--hpo-ids']
 
 
 def index(request):
