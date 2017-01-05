@@ -47,7 +47,7 @@ def de_novo(children_files, mother_file=None, father_file=None,
 
 def filter_by_exac(de_novo, exac_file, max_ac):
     read_en = False
-    f = open(exac_file, "rb")
+    f = open(exac_file, "r")
     count = 0
     for row in csv.reader(iter(f.readline, '')):
         srow = "".join(row)
