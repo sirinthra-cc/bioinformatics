@@ -20,5 +20,6 @@ urlpatterns = [
     url(r'^$', include('phenotype_influencing.urls')),
     url(r'^de-novo/', include('de_novo.urls')),
     url(r'^phenotype/', include('phenotype_influencing.urls')),
+    url(r'^exomewalker/', include('exomewalker.urls')),
     url(r'^admin/', admin.site.urls),
 ]

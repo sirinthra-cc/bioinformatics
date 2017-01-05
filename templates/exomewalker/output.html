@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Exomiser</li>
+        <li class="breadcrumb-item">ExomeWalker</li>
+        <li class="breadcrumb-item active">Output</li>
+        <li class="breadcrumb-menu">
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
+            </div>
+        </li>
+    </ol>
+{% endblock %}
+
+{% block main-container %}
+    <div class="card">
+        <div class="card-header">
+            <i class="fa fa-align-justify"></i> ExomeWalker Output
+        </div>
+        <div class="card-block">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#CHROM</th>
+                        <th>POS</th>
+                        <th>REF</th>
+                        <th>ALT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for output in output_list %}
+                        {% if output.ref == 'A' %}
+                            <tr style="color: #ee3148">
+                                <td>{{ output.chrom }}</td>
+                                <td>{{ output.pos }}</td>
+                                <td class="ref">{{ output.ref }}</td>
+                                <td class="alt">{{ output.alt }}</td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td>{{ output.chrom }}</td>
+                                <td>{{ output.pos }}</td>
+                                <td class="ref">{{ output.ref }}</td>
+                                <td class="alt">{{ output.alt }}</td>
+                            </tr>
+                        {% endif %}
+
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{#{% block my-script %}#}
+{#    <script type="text/javascript">#}
+{#    </script>#}
+{#{% endblock %}#}

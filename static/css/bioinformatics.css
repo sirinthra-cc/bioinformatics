@@ -1,0 +1,8 @@
+table {
+  table-layout: fixed;
+}
+td {
+  padding: 20px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
