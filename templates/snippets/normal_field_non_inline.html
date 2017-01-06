@@ -1,0 +1,13 @@
+{% load widget_tweaks %}
+
+<div class="form-group row {% if element.errors %}has-error{% endif %}">
+    <label class="col-lg-12 form-control-label" for="text-input">{{ element.label_tag }}</label>
+    <div class="col-lg-12">
+        {% if element.errors and not hide_errors %}
+            {% render_field element class+="form-control error" class+=element_class %}
+            <small class="help-block">{% for error in element.errors %}{{ error }}{% endfor %}</small>
+        {% else %}
+            {% render_field element class+="form-control" class+=element_class %}
+        {% endif %}
+    </div>
+</div>

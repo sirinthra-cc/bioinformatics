@@ -93,7 +93,6 @@ class ExomeWalkerOutput:
     # pass
     # -variants - only
     # true - -hpo - ids
-    # HP: 0000705, HP: 00062
-    # 84, HP: 0006310, HP: 0006325, HP: 0006327, HP: 0006331 - v
+    # HP: 0000705, HP: 0006284, HP: 0006310, HP: 0006325, HP: 0006327, HP: 0006331 - v
     # "c:\Workspace\Individual Study\Amelogenesis Imperfecta\Annotated\G4778_Annotated.ann.vcf" - o
     # "C:\Workspace\Individual Study\Amelogenesis Imperfecta\Exomised\hiPHIVE"\G4778_Exomised
