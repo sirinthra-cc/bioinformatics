@@ -74,11 +74,12 @@
         });
 
         function selectID(id) {
-            $(id).hide();
+{#            $(id).hide();#}
             var  hpoInput = $("#id_hiphive-hpo");
             var existID = hpoInput.val();
             if(existID == "") hpoInput.val(id);
             else if(existID.indexOf(id) < 0) hpoInput.val(existID+", "+id);
+            else alert("This HPO ID is already added.");
         }
     </script>
 {% endblock %}

@@ -17,25 +17,28 @@ compile_list_2 = ['-I', 'AD', '-F', '1', '--full-analysis', 'true', '-f', 'VCF',
 
 
 def index(request):
+    form = None
     if request.method == 'POST':
-        form = ExomeWalkerForm(request.POST)
-        if form.is_valid():
-            input_file = form.cleaned_data['input']
-            entrez = form.cleaned_data['entrez']
-            output_name = form.cleaned_data['output_name']
-            compile_list_1.append(input_file)
-            compile_list_1.append('-o')
-            compile_list_1.append(BASE_DIR+'\\output\\'+output_name)
-            compile_list = compile_list_1 + compile_list_2
-            compile_list.append(entrez)
-            subprocess.call(compile_list)
-            # output(request, output_name)
-            print("FINISH"*50)
-            return HttpResponseRedirect('/exomewalker/output/'+output_name)
-        else:
-            print("invalid")
+        print("POST"*50)
+        if 'exomewalker' in request.POST:
+            form = ExomeWalkerForm(request.POST, prefix="exomewalker")
+            if form.is_valid():
+                input_file = form.cleaned_data['input']
+                entrez = form.cleaned_data['entrez']
+                output_name = form.cleaned_data['output_name']
+                compile_list_1.append(input_file)
+                compile_list_1.append('-o')
+                compile_list_1.append(BASE_DIR+'\\output\\'+output_name)
+                compile_list = compile_list_1 + compile_list_2
+                compile_list.append(entrez)
+                subprocess.call(compile_list)
+                # output(request, output_name)
+                print("FINISH"*50)
+                return HttpResponseRedirect('/exomewalker/output/'+output_name)
+            else:
+                print("invalid")
     else:
-        form = ExomeWalkerForm()
+        form = ExomeWalkerForm(prefix="exomewalker")
     return render(request, 'exomewalker/index.html', {'form': form})
 
 

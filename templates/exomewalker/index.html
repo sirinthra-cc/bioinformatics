@@ -28,14 +28,15 @@
                         </div>
                     </div>
 
-                    <div style="display: none">{% include 'snippets/normal_field.html' with element=form.input %}</div>
+                    <div>{% include 'snippets/normal_field.html' with element=form.input %}</div>
                     {% include 'snippets/normal_field.html' with element=form.entrez %}
                     {% include 'snippets/normal_field.html' with element=form.output_name %}
 
                 </div>
 
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-sm btn-primary" id="submit"><i class="fa fa-dot-circle-o"></i> Submit</button>
+                    <button type="submit" name="exomewalker" class="btn btn-sm btn-primary" id="submit">
+                        <i class="fa fa-dot-circle-o"></i> Submit</button>
                 </div>
             </form>
 
@@ -57,7 +58,7 @@
 {% block my-script %}
     <script type="text/javascript">
         document.getElementById("submit").onclick = function () {
-            document.getElementById("id_input").value = document.getElementById("input-file").value;
+            document.getElementById("id_exomewalker-input").value = document.getElementById("input-file").value;
         };
     </script>
 {% endblock %}

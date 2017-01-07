@@ -17,6 +17,7 @@ def index(request):
     search_form = None
     search_results = []
     if request.method == 'POST':
+        print("POST jaaaa"*50)
         if 'hiphive' in request.POST:
             hiphive_form = HiPhiveForm(request.POST, prefix='hiphive')
             search_form = HPOSearchForm(prefix='search')
