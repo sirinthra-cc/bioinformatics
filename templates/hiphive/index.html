@@ -68,13 +68,11 @@
     <script type="text/javascript">
         $(document).ready(function(){
             $("#submit").on("click", function(){
-                event.preventDefault();
                 $("#id_hiphive-input").val($("#input-file").val());
             });
         });
 
-        function selectID(id) {
-{#            $(id).hide();#}
+        function selectID(id){
             var  hpoInput = $("#id_hiphive-hpo");
             var existID = hpoInput.val();
             if(existID == "") hpoInput.val(id);

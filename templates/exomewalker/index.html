@@ -45,7 +45,7 @@
     <div class="col-lg-6">
         <div class="card card-inverse card-info">
             <form action="{{ action }}" method="post" id="search_form" enctype="multipart/form-data">{% csrf_token %}
-                <div class="card-header"><strong>Search HPO ID</strong></div>
+                <div class="card-header"><strong>Search Entrez ID</strong></div>
                 <div class="card-block">
                     {% include 'snippets/normal_field_non_inline.html' with element=search_form.search_string %}
                     <button type="submit" name="search" class="btn btn-sm btn-secondary" id="search">Search</button>
@@ -68,8 +68,18 @@
 
 {% block my-script %}
     <script type="text/javascript">
-        document.getElementById("submit").onclick = function () {
-            document.getElementById("id_exomewalker-input").value = document.getElementById("input-file").value;
-        };
+        $(document).ready(function(){
+            $("#submit").on("click", function(){
+                $("#id_exomewalker-input").val($("#input-file").val());
+            });
+        });
+
+        function selectID(id) {
+            var  hpoInput = $("#id_exomewalker-entrez");
+            var existID = hpoInput.val();
+            if(existID == "") hpoInput.val(id);
+            else if(existID.indexOf(id) < 0) hpoInput.val(existID+", "+id);
+            else alert("This Entrez ID is already added.");
+        }
     </script>
 {% endblock %}
