@@ -51,7 +51,8 @@ def index(request):
     else:
         search_form = EntrezSearchForm(prefix='search')
         exomewalker_form = ExomeWalkerForm(prefix="exomewalker")
-    return render(request, 'exomewalker/index.html', {'form': exomewalker_form, 'search_form': search_form})
+    return render(request, 'exomewalker/index.html', {'form': exomewalker_form, 'search_form': search_form,
+                                                      'search_results': search_results})
 
 
 def output(request, output_name):
