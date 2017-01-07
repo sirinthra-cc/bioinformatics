@@ -2,7 +2,7 @@ import os
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from .forms import ExomeWalkerForm
+from .forms import ExomeWalkerForm, EntrezSearchForm
 import subprocess
 from config.settings import BASE_DIR
 
@@ -17,15 +17,17 @@ compile_list_2 = ['-I', 'AD', '-F', '1', '--full-analysis', 'true', '-f', 'VCF',
 
 
 def index(request):
-    form = None
+    exomewalker_form = None
+    search_form = None
+    search_results = []
     if request.method == 'POST':
-        print("POST"*50)
         if 'exomewalker' in request.POST:
-            form = ExomeWalkerForm(request.POST, prefix="exomewalker")
-            if form.is_valid():
-                input_file = form.cleaned_data['input']
-                entrez = form.cleaned_data['entrez']
-                output_name = form.cleaned_data['output_name']
+            exomewalker_form = ExomeWalkerForm(request.POST, prefix="exomewalker")
+            search_form = EntrezSearchForm(prefix='search')
+            if exomewalker_form.is_valid():
+                input_file = exomewalker_form.cleaned_data['input']
+                entrez = exomewalker_form.cleaned_data['entrez']
+                output_name = exomewalker_form.cleaned_data['output_name']
                 compile_list_1.append(input_file)
                 compile_list_1.append('-o')
                 compile_list_1.append(BASE_DIR+'\\output\\'+output_name)
@@ -36,10 +38,20 @@ def index(request):
                 print("FINISH"*50)
                 return HttpResponseRedirect('/exomewalker/output/'+output_name)
             else:
-                print("invalid")
+                print("exomewalker form invalid")
+        elif 'search' in request.POST:
+            exomewalker_form = ExomeWalkerForm(request.POST, prefix='exomewalker')
+            search_form = EntrezSearchForm(request.POST, prefix='search')
+            if search_form.is_valid():
+                # search_results = hp_id_search(search_form.cleaned_data['search_string'])
+                # print(search_results)
+                search_results = ['TEST']
+            else:
+                print("search form invalid")
     else:
-        form = ExomeWalkerForm(prefix="exomewalker")
-    return render(request, 'exomewalker/index.html', {'form': form})
+        search_form = EntrezSearchForm(prefix='search')
+        exomewalker_form = ExomeWalkerForm(prefix="exomewalker")
+    return render(request, 'exomewalker/index.html', {'form': exomewalker_form, 'search_form': search_form})
 
 
 def output(request, output_name):

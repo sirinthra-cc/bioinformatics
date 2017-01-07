@@ -43,12 +43,23 @@
         </div>
     </div>
     <div class="col-lg-6">
-        <div class="card">
-            <form action="{{ action }}" method="post">
-                {% csrf_token %}
-                <div class="card-header"><strong>Search Entrez ID</strong></div>
+        <div class="card card-inverse card-info">
+            <form action="{{ action }}" method="post" id="search_form" enctype="multipart/form-data">{% csrf_token %}
+                <div class="card-header"><strong>Search HPO ID</strong></div>
                 <div class="card-block">
-                    {% include 'snippets/normal_field.html' with element=form.output_name %}
+                    {% include 'snippets/normal_field_non_inline.html' with element=search_form.search_string %}
+                    <button type="submit" name="search" class="btn btn-sm btn-secondary" id="search">Search</button>
+                    {% if search_results %}
+                        <div style="max-height: 300px; overflow-y: auto; margin-top: 20px;">
+                            {% for search_result in search_results %}
+                                <button type="button" class="btn btn-sm btn-primary col-lg-12"
+                                        id="{{ search_result.0 }}" ondblclick="selectID(id)"
+                                        style="text-align:left; padding-left:6px">
+                                    {{ search_result.0 }} - {{ search_result.1 }}
+                                </button>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
             </form>
         </div>
