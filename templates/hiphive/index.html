@@ -3,7 +3,7 @@
 
 {% block breadcrumb %}
     <ol class="breadcrumb">
-        <li class="breadcrumb-item">Phenotype Influencing</li>
+        <li class="breadcrumb-item">Exomiser</li>
         <li class="breadcrumb-item active">hiPhive</li>
         <li class="breadcrumb-menu">
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -27,7 +27,7 @@
                         </div>
                     </div>
 
-                    <div>{% include 'snippets/normal_field.html' with element=form.input %}</div>
+                    <div style="display: none">{% include 'snippets/normal_field.html' with element=form.input %}</div>
                     {% include 'snippets/normal_field.html' with element=form.hpo %}
                     {% include 'snippets/normal_field.html' with element=form.output_name %}
                     {{ form.non_field_errors }}
