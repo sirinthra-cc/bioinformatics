@@ -1,8 +1,24 @@
 table {
   table-layout: fixed;
+  width: 100%;
+  /*max-width: 100%;*/
+  overflow-x: auto;
+  display: block;
 }
-td {
+td, th {
   padding: 20px;
   overflow-x: auto;
   white-space: nowrap;
+}
+thead > tr, tbody{
+    display:block;
+}
+.fixed_headers > thead > tr {
+    display: block;
+    position: relative;
+}
+.fixed_headers > tbody {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 400px;
 }

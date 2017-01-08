@@ -5,6 +5,8 @@ import subprocess
 from config.settings import BASE_DIR
 from .restruct_HP import hp_id_search
 
+from commons.output import get_output_list
+
 
 CHROM = 0; POS = 1; ID = 2; REF = 3; ALT = 4; QUAL = 5; FILTER = 6; INFO = 7; FORMAT = 8; G = 9
 compile_list = ['java', '-Xms2g', '-Xmx4g', '-jar', BASE_DIR+'\\tools\\exomiser-cli-7.2.1\\exomiser-cli-7.2.1.jar',
@@ -17,7 +19,6 @@ def index(request):
     search_form = None
     search_results = []
     if request.method == 'POST':
-        print("POST jaaaa"*50)
         if 'hiphive' in request.POST:
             hiphive_form = HiPhiveForm(request.POST, prefix='hiphive')
             search_form = HPOSearchForm(prefix='search')
@@ -41,7 +42,6 @@ def index(request):
             search_form = HPOSearchForm(request.POST, prefix='search')
             if search_form.is_valid():
                 search_results = hp_id_search(search_form.cleaned_data['search_string'])
-                print(search_results)
             else:
                 print("search form invalid")
 
@@ -54,30 +54,8 @@ def index(request):
 
 
 def output(request, output_name):
-    output_list = []
-    read_en = False
-    for row in list(open('output/'+output_name+'.vcf', "r")):
-        words = row.strip().split()
-        if read_en:
-            chrom = words[CHROM]
-            pos = words[POS]
-            ref = words[REF]
-            alt = words[ALT]
-            hiphive_output = HiPhiveOutput(chrom, pos, ref, alt)
-            output_list.append(hiphive_output)
-        if words[CHROM] == "#CHROM":
-            read_en = True
+    output_list = get_output_list(output_name)
     return render(request, 'hiphive/output.html', {'output_list': output_list})
 
 
-class HiPhiveOutput:
-    chrom = None
-    pos = None
-    ref = None
-    alt = None
 
-    def __init__(self, chrom, pos, ref, alt):
-        self.chrom = chrom
-        self.pos = pos
-        self.ref = ref
-        self.alt = alt
