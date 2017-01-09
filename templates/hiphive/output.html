@@ -34,7 +34,7 @@
                         <th style="max-width: 140px; min-width: 140px">GENE_PHENO_SCORE</th>
                         <th style="max-width: 140px; min-width: 140px">GENE_VARIANT_SCORE</th>
                         <th style="max-width: 140px; min-width: 140px">VARIANT_SCORE</th>
-                        {% if output_list.0.ann %}<th>ANN</th>{% endif %}
+                        {% if output_list.0.ann %}<th style="max-width: 500px; min-width: 500px">ANN</th>{% endif %}
                     </tr>
                 </thead>
                 <tbody>
@@ -51,7 +51,7 @@
                             <td style="max-width: 140px; min-width: 140px">{{ output.gene_pheno_score }}</td>
                             <td style="max-width: 140px; min-width: 140px">{{ output.gene_variant_score }}</td>
                             <td style="max-width: 140px; min-width: 140px">{{ output.variant_score }}</td>
-                            {% if output.ann %}<td style="max-width: 20px; min-width: 20px">{{ output.ann }}</td>{% endif %}
+                            {% if output.ann %}<td style="max-width: 500px; min-width: 500px">{{ output.ann }}</td>{% endif %}
                         </tr>
                     {% endfor %}
                 </tbody>

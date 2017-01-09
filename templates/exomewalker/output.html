@@ -17,36 +17,42 @@
 {% block main-container %}
     <div class="card">
         <div class="card-header">
-            <i class="fa fa-align-justify"></i> ExomeWalker Output
+            <i class="fa fa-align-justify"></i> Exomewalker Output
         </div>
         <div class="card-block">
-            <table class="table table-bordered">
+            <table class="table table-bordered fixed_headers">
                 <thead>
                     <tr>
-                        <th>#CHROM</th>
-                        <th>POS</th>
-                        <th>REF</th>
-                        <th>ALT</th>
+                        <th style="max-width: 80px; min-width: 80px">CHROM</th>
+                        <th style="max-width: 100px; min-width: 100px">POS</th>
+                        <th style="max-width: 100px; min-width: 100px">REF</th>
+                        <th style="max-width: 100px; min-width: 100px">ALT</th>
+                        <th style="max-width: 50px; min-width: 50px">DP</th>
+                        <th style="max-width: 110px; min-width: 110px">GENE</th>
+                        <th style="max-width: 90px; min-width: 90px">gene_type</th>
+                        <th style="max-width: 140px; min-width: 140px">GENE_COMBINED_SCORE</th>
+                        <th style="max-width: 140px; min-width: 140px">GENE_PHENO_SCORE</th>
+                        <th style="max-width: 140px; min-width: 140px">GENE_VARIANT_SCORE</th>
+                        <th style="max-width: 140px; min-width: 140px">VARIANT_SCORE</th>
+                        {% if output_list.0.ann %}<th style="max-width: 500px; min-width: 500px">ANN</th>{% endif %}
                     </tr>
                 </thead>
                 <tbody>
                     {% for output in output_list %}
-                        {% if output.ref == 'A' %}
-                            <tr style="color: #ee3148">
-                                <td>{{ output.chrom }}</td>
-                                <td>{{ output.pos }}</td>
-                                <td class="ref">{{ output.ref }}</td>
-                                <td class="alt">{{ output.alt }}</td>
-                            </tr>
-                        {% else %}
-                            <tr>
-                                <td>{{ output.chrom }}</td>
-                                <td>{{ output.pos }}</td>
-                                <td class="ref">{{ output.ref }}</td>
-                                <td class="alt">{{ output.alt }}</td>
-                            </tr>
-                        {% endif %}
-
+                        <tr {% if output.ref == 'A' %}style="color: #ee3148"{% endif %}>
+                            <td style="max-width: 80px; min-width: 80px">{{ output.chrom }}</td>
+                            <td style="max-width: 100px; min-width: 100px">{{ output.pos }}</td>
+                            <td style="max-width: 100px; min-width: 100px">{{ output.ref }}</td>
+                            <td style="max-width: 100px; min-width: 100px">{{ output.alt }}</td>
+                            <td style="max-width: 50px; min-width: 50px">{{ output.dp }}</td>
+                            <td style="max-width: 110px; min-width: 110px">{{ output.gene_name }}</td>
+                            <td style="max-width: 90px; min-width: 90px">{{ output.gene_type }}</td>
+                            <td style="max-width: 140px; min-width: 140px">{{ output.gene_combined_score }}</td>
+                            <td style="max-width: 140px; min-width: 140px">{{ output.gene_pheno_score }}</td>
+                            <td style="max-width: 140px; min-width: 140px">{{ output.gene_variant_score }}</td>
+                            <td style="max-width: 140px; min-width: 140px">{{ output.variant_score }}</td>
+                            {% if output.ann %}<td style="max-width: 500px; min-width: 500px">{{ output.ann }}</td>{% endif %}
+                        </tr>
                     {% endfor %}
                 </tbody>
             </table>
@@ -54,7 +60,10 @@
     </div>
 {% endblock %}
 
-{#{% block my-script %}#}
-{#    <script type="text/javascript">#}
-{#    </script>#}
-{#{% endblock %}#}
+{% block my-script %}
+    <script type="text/javascript">
+        $('table').on('scroll', function () {
+            $("table > *").width($("table").width() + $("table").scrollLeft());
+        });
+    </script>
+{% endblock %}

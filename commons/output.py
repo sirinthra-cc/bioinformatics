@@ -1,3 +1,7 @@
+import os
+from tools.ExtractINFO_And_SpecifyGenes.export import export_specify_gene
+
+
 class ExomiserOutput:
     chrom = None
     pos = None
@@ -39,7 +43,10 @@ EXOMISER_VARIANT_SCORE = None
 def get_output_list(output_name):
     output_list = []
     read_en = False
-    for row in list(open('output/' + output_name + '.vcf', "r")):
+    file_path = 'output/' + output_name + '-specify-gene.vcf'
+    if not os.path.exists(file_path):
+        export_specify_gene(output_name)
+    for row in list(open(file_path, "r")):
         words = row.strip().split()
         if read_en:
             if ANN != -1:

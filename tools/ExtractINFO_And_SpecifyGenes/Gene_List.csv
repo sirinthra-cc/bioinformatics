@@ -1,0 +1,73 @@
+Gene,#,Mode,Reference
+ALB,1,AD,target gene
+AMBN,2,AD,target gene
+AMELX,3,X-link,target gene
+AMTN,4,AD,target gene
+C4orf26,5,AD,target gene
+CNNM4,6,AD,target gene
+DLX3,7,AD,target gene
+DSPP,8,AD,target gene
+ENAM,9,AD,target gene
+FAM20A,10,AR,target gene
+FAM83H,11,AD,target gene
+ITGB6,12,AR,target gene
+KLK4,13,AD,target gene
+LAMB3,14,AD,target gene
+MMP20,15,AD,target gene
+ROGDI,16,AD,target gene
+SLC24A4,17,AD,target gene
+TMEM165,18,AD,target gene
+TUFT1,19,AD,target gene
+WDR72,20,AD,target gene
+AIH3,21,,candidate
+AMELY,22,,candidate
+ARHGAP6,23,,candidate
+ATE1,24,,candidate
+BMP1,25,,candidate
+BZRAP1,26,,candidate
+CKAP4,27,,candidate
+CNGA3,28,,candidate
+COL17A1,29,,candidate
+COL1A1,30,,candidate
+COL1A2,31,,candidate
+CRX,32,,candidate
+EDNRB,33,,candidate
+FAM20B,34,,candidate
+FAM20C,35,,candidate
+FKBP10,36,,candidate
+FST,37,,candidate
+GNAQ,38,,candidate
+HPX,39,,candidate
+IFITM5,40,,candidate
+LAMA3,41,,candidate
+LTBP3,42,,candidate
+MMP25,43,,candidate
+MSX2,44,,candidate
+NF1,45,,candidate
+P3H1,46,,candidate
+PERP,47,,candidate
+PPIB,48,,candidate
+PRKAR1A,49,,candidate
+PRLTS1,50,,candidate
+PVRL1,51,,candidate
+RHO6,52,,candidate
+RPGR,53,,candidate
+SERPINA10,54,,candidate
+SERPINF1,55,,candidate
+SERPINH1,56,,candidate
+SP7,57,,candidate
+TBX1,58,,candidate
+TP63,59,,candidate
+TUFT,60,,candidate
+WDR7,61,,candidate
+STIM1,62,,candidate
+STIM2,63,,candidate
+SP6,64,,candidate
+ODAM,65,,candidate
+LAMC2,66,,candidate
+SLC4A4,67,,candidate
+SLC34A2,68,,candidate
+SLC1A1,69,,candidate
+SLC39A2,70,,candidate
+SLC4A2,71,,candidate
+CRTAP,72,,candidate
