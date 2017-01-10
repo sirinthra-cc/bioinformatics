@@ -1,7 +1,6 @@
 import csv
 
-
-def getEntrez(ref_file, Gene_list_file, output_file):
+def getEntrez(ref_file,Gene_list_file,output_file):
     reff = open(ref_file, 'r')
     gf = open(Gene_list_file, 'r')
     wf = open(output_file, 'w', newline='')
@@ -44,6 +43,7 @@ def specify_gene(ref_file,Gene_list_file,output_file):
     reff = open(ref_file, 'r')
     gf = open(Gene_list_file, 'r')
     wf = open(output_file, 'w', newline='')
+    hasANN = 0
 
     try:
         ref_reader = reff.readlines()
@@ -61,7 +61,7 @@ def specify_gene(ref_file,Gene_list_file,output_file):
                 add_info = []
                 gf.seek(0)
                 for row2 in gl_reader:
-                    if row[15] == row2[0]:
+                    if row[14 + hasANN] == row2[0]:
                         add_info.append(row2[3])
                         found_gene = True
 
@@ -73,6 +73,8 @@ def specify_gene(ref_file,Gene_list_file,output_file):
                 #writer.writerow(row + add_info)
             elif row[0] == "#CHROM":
                 read_en = True
+                if row[12] == 'ANN':
+                    hasANN = 1
                 # iter_row = iter(reader)
                 add_header = ["gene_type"]
                 #print(row+add_header)
