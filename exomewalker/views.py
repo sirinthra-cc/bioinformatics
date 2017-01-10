@@ -1,5 +1,7 @@
+import json
 import os
 
+from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
@@ -23,8 +25,9 @@ compile_list_2 = ['-I', 'AD', '-F', '1', '--full-analysis', 'true', '-f', 'VCF',
 def index(request):
     exomewalker_form = None
     search_form = None
-    search_results = []
+    search_results = -1
     if request.method == 'POST':
+        print("post jaa", request.POST)
         if 'exomewalker' in request.POST:
             exomewalker_form = ExomeWalkerForm(request.POST, prefix="exomewalker")
             search_form = EntrezSearchForm(prefix='search')
@@ -41,11 +44,13 @@ def index(request):
                 return HttpResponseRedirect('/exomewalker/output/'+output_name)
             else:
                 print("exomewalker form invalid")
-        elif 'search' in request.POST:
-            exomewalker_form = ExomeWalkerForm(request.POST, prefix='exomewalker')
+        elif 'search-search_string' in request.POST:
+            exomewalker_form = ExomeWalkerForm(prefix='exomewalker')
             search_form = EntrezSearchForm(request.POST, prefix='search')
             if search_form.is_valid():
                 search_results = entrez_id_search(search_form.cleaned_data['search_string'])
+                return HttpResponse(json.dumps({'search_results': search_results}))
+
             else:
                 print("search form invalid")
     else:
