@@ -8,4 +8,4 @@ class ExomeWalkerForm(forms.Form):
 
 
 class EntrezSearchForm(forms.Form):
-    search_string = forms.CharField(label="Disease Name")
+    search_string = forms.CharField(label="Gene Symbol")

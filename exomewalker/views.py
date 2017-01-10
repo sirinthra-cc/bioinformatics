@@ -25,7 +25,6 @@ compile_list_2 = ['-I', 'AD', '-F', '1', '--full-analysis', 'true', '-f', 'VCF',
 def index(request):
     exomewalker_form = None
     search_form = None
-    search_results = -1
     if request.method == 'POST':
         print("post jaa", request.POST)
         if 'exomewalker' in request.POST:
@@ -57,8 +56,7 @@ def index(request):
         search_form = EntrezSearchForm(prefix='search')
         exomewalker_form = ExomeWalkerForm(prefix="exomewalker")
     return render(request, 'exomewalker/index.html', {'form': exomewalker_form,
-                                                      'search_form': search_form,
-                                                      'search_results': search_results})
+                                                      'search_form': search_form})
 
 
 def output(request, output_name):

@@ -8,4 +8,4 @@ class HiPhiveForm(forms.Form):
 
 
 class HPOSearchForm(forms.Form):
-    search_string = forms.CharField(label="Disease Name")
+    search_string = forms.CharField(label="Symptom")
