@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Exomiser</li>
+        <li class="breadcrumb-item active">ExomeWalker</li>
+        <li class="breadcrumb-menu">
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
+            </div>
+        </li>
+    </ol>
+{% endblock %}
+
+{% block main-container %}
+    <div class="col-lg-6">
+        <div class="card">
+            <form action="{{ action }}" method="post">
+                {% csrf_token %}
+                <div class="card-header"><strong>ExomeWalker Form</strong></div>
+                <div class="card-block">
+                    {# Input file #}
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="file-input">Input File:</label>
+                        <div class="col-md-9">
+                            <input type="file" id="input-file" name="file-input">
+                        </div>
+                    </div>
+
+                    <div style="display: none">{% include 'snippets/normal_field.html' with element=form.input %}</div>
+                    {% include 'snippets/normal_field.html' with element=form.entrez %}
+                    {% include 'snippets/normal_field.html' with element=form.output_name %}
+
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" name="exomewalker" class="btn btn-sm btn-primary" id="submit">
+                        <i class="fa fa-dot-circle-o"></i> Submit</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card card-inverse card-info">
+            <form action="{{ action }}" method="post" id="search_form" enctype="multipart/form-data">{% csrf_token %}
+                <div class="card-header"><strong>Search Entrez ID</strong></div>
+                <div class="card-block">
+                    {% include 'snippets/normal_field_non_inline.html' with element=search_form.search_string %}
+                    <button type="submit" name="search" class="btn btn-sm btn-secondary" id="search">Search</button>
+                    {% if search_results %}
+                        <div style="max-height: 300px; overflow-y: auto; margin-top: 20px;">
+                            {% for search_result in search_results %}
+                                <button type="button" class="btn btn-sm btn-primary col-lg-12"
+                                        id="{{ search_result.0 }}" ondblclick="selectID(id)"
+                                        style="text-align:left; padding-left:6px">
+                                    {{ search_result.0 }} - {{ search_result.1 }}
+                                </button>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block my-script %}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#submit").on("click", function(){
+                $("#id_exomewalker-input").val($("#input-file").val());
+            });
+        });
+
+        function selectID(id) {
+            var  hpoInput = $("#id_exomewalker-entrez");
+            var existID = hpoInput.val();
+            if(existID == "") hpoInput.val(id);
+            else if(existID.indexOf(id) < 0) hpoInput.val(existID+", "+id);
+            else alert("This Entrez ID is already added.");
+        }
+    </script>
+{% endblock %}

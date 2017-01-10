@@ -68,6 +68,7 @@ menuinst==1.4.1
 mistune==0.7.3
 mpmath==0.19
 multipledispatch==0.4.8
+mygene==3.0.0
 nb-anacondacloud==1.2.0
 nb-conda==2.0.0
 nb-conda-kernels==2.0.0

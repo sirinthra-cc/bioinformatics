@@ -87,3 +87,6 @@ ENV/
 
 # Rope project settings
 .ropeproject
+.idea/inspectionProfiles/Project_Default.xml
+output/*
+tools/exomiser-cli-7.2.1/*

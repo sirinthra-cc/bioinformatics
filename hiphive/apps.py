@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class HiphiveConfig(AppConfig):
+class HiPhiveConfig(AppConfig):
     name = 'hiphive'
