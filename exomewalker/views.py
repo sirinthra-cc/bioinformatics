@@ -26,7 +26,6 @@ def index(request):
     exomewalker_form = None
     search_form = None
     if request.method == 'POST':
-        print("post jaa", request.POST)
         if 'exomewalker' in request.POST:
             exomewalker_form = ExomeWalkerForm(request.POST, prefix="exomewalker")
             search_form = EntrezSearchForm(prefix='search')
@@ -49,7 +48,6 @@ def index(request):
             if search_form.is_valid():
                 search_results = entrez_id_search(search_form.cleaned_data['search_string'])
                 return HttpResponse(json.dumps({'search_results': search_results}))
-
             else:
                 print("search form invalid")
     else:
