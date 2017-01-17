@@ -21,7 +21,11 @@ def index(request):
         form = FilterForm(request.POST)
         if form.is_valid():
             input_file = form.cleaned_data['input']
+            filter_by_exac = form.cleaned_data['filter_by_exac']
+            filter_by_thwes = form.cleaned_data['filter_by_thwes']
+            filter_by_revel = form.cleaned_data['filter_by_revel']
             output_name = form.cleaned_data['output_name']
+            print(filter_by_exac, filter_by_thwes, filter_by_revel)
             # subprocess.call(compile_list)
             # return HttpResponseRedirect('/exomewalker/output/'+output_name)
         else:

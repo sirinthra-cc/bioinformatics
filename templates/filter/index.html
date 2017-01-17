@@ -16,7 +16,7 @@
     <div class="card">
         <form action="{{ action }}" method="post">
             {% csrf_token %}
-            <div class="card-header"><strong>ExomeWalker Form</strong></div>
+            <div class="card-header"><strong>Filter Form</strong></div>
             <div class="card-block">
                 {# Input file #}
                 <div class="form-group row">
@@ -27,6 +27,9 @@
                 </div>
 
                 <div style="display: none">{% include 'snippets/normal_field.html' with element=form.input %}</div>
+                {% include 'snippets/boolean_field.html' with element=form.filter_by_exac %}
+                {% include 'snippets/boolean_field.html' with element=form.filter_by_thwes %}
+                {% include 'snippets/boolean_field.html' with element=form.filter_by_revel %}
                 {% include 'snippets/normal_field.html' with element=form.output_name %}
 
             </div>

@@ -25,14 +25,16 @@ def get_variant_and_depth(filename):
             read_en = True
     return variant
 
+
 def get_ac(info):
     start = info.find('AC=')
     start += 3
     end = info.find(';', start)
     return int(info[start:end])
 
-def filtration(var_file,mode_revel,mode_exac,mode_thwe):
-    var_dict  = get_variant_and_depth(var_file)
+
+def filtration(var_file, mode_revel, mode_exac, mode_thwe):
+    var_dict = get_variant_and_depth(var_file)
     read_en = False
     if mode_revel:
         f = open(revel_ref, 'r')
