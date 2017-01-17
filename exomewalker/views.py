@@ -20,6 +20,8 @@ compile_list_1 = ['java', '-Xms2g', '-Xmx4g', '-jar', BASE_DIR+'\\tools\\exomise
                   '--prioritiser', 'exomewalker', '-v']
 compile_list_2 = ['-I', 'AD', '-F', '1', '--full-analysis', 'true', '-f', 'VCF', '--output-pass-variants-only', 'true',
                   '-S']
+compile_list_ped = ['-p', 'pedfile.ped']
+# --output-pass-variants-only true -p pedfile.ped -v input.vcf -o output.vcf -S ...
 
 
 def index(request):
