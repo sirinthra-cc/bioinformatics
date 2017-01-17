@@ -1,16 +1,10 @@
 import csv
-
-from django.http import HttpResponseRedirect
-
-from config.settings import BASE_DIR
-
-
 CHROM = 0; POS = 1; ID = 2; REF = 3; ALT = 4; QUAL = 5; FILTER = 6; INFO = 7; FORMAT = 8; G = 9; REVEL_SCORE = 6;
 CHR = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19',
        '20', '21', '22', 'X', 'Y']
-revel_ref = BASE_DIR + "database/revel_all_chromosomes.csv"
-exac_ref = BASE_DIR + "database/exac_path.csv"
-thwe_ref = BASE_DIR + "database/variant.153.csv"
+revel_ref = "/Users/jijy/Documents/indiv/revel_all_chromosomes.csv"
+exac_ref = "/Volumes/My Passport/AnalysisTool/database/variant.153.csv"
+thwe_ref = "/Volumes/My Passport/AnalysisTool/database/variant.153.csv"
 
 
 def get_variant_and_depth(filename):
@@ -39,9 +33,10 @@ def get_ac(info):
     return int(info[start:end])
 
 
-def filtration(var_file, mode_revel, mode_exac, mode_thwe, output_name):
-    # return HttpResponseRedirect('/exomewalker/output/' + output_name)
-    var_dict = get_variant_and_depth(var_file)
+def filtration(var_file,mode_revel,mode_exac,mode_thwe,output_path):
+    var_dict  = get_variant_and_depth(var_file)
+    output = open(output_path, 'w')
+    writer = csv.writer(output)
     read_en = False
     if mode_revel:
         f = open(revel_ref, 'r')
@@ -93,8 +88,11 @@ def filtration(var_file, mode_revel, mode_exac, mode_thwe, output_name):
                 if ac > 1:
                     try:
                         var_dict[chro].remove(pos)
+
                     except KeyError:
                         pass
             if words[CHROM] == '#CHROM':
                 read_en = True
+    for row in var_dict:
+        writer.writerows(var_dict[row])
     return var_dict

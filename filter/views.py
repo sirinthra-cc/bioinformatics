@@ -40,6 +40,6 @@ def index(request):
     return render(request, 'filter/index.html', {'form': form})
 
 
-# def output(request, output_name):
-    # output_list = get_output_list(output_name)
-    # return render(request, 'exomewalker/output.html', {'output_list': output_list})
+def output(request, output_name):
+    output_list = get_output_list(output_name)
+    return render(request, 'filter/output.html', {'output_list': output_list})
