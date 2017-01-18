@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from multiprocessing import Process
 
-from commons.output_exomiser import get_output_list
+from commons.output_common import get_output_list
 from .filtration import filtration
 from .forms import FilterForm
 import subprocess

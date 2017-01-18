@@ -6,7 +6,7 @@ CHROM = 0; POS = 1; ID = 2; REF = 3; ALT = 4; QUAL = 5; FILTER = 6; INFO = 7; FO
 CHR = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19',
        '20', '21', '22', 'X', 'Y']
 HEADER = ['#CHROM', 'POS', 'ID', 'REF', 'ALT', 'QUAL', 'FILTER', 'INFO', 'FORMAT', 'G']
-revel_ref = "/Users/jijy/Documents/indiv/revel_all_chromosomes.csv"
+revel_ref = BASE_DIR + "/database/Revel_all_chromosomes.csv"
 exac_ref = BASE_DIR + "/database/variant.153.csv"
 thwe_ref = BASE_DIR + "/database/variant.153.csv"
 
@@ -48,7 +48,7 @@ def filtration(var_file, mode_revel, mode_exac, mode_thwe, output_name):
                 chro = words[CHROM][3:]
                 pos = int(words[POS])
                 # print(words[REVEL_SCORE])
-                revel_score = int(words[REVEL_SCORE])
+                revel_score = float(words[REVEL_SCORE])
                 if revel_score < 0.05:
                     try:
                         var_dict[chro].remove(pos)
@@ -108,15 +108,12 @@ def write_file(var_file, to_be_written_dict, output_path):
         reader = csv.reader(rf, delimiter='\t')
         read_en = False
         for row in reader:
-            print(row)
             if read_en:
-                # print('pos', row[POS])
-                # print('chro', row[CHROM][3:])
                 if int(row[POS]) in to_be_written_dict[row[CHROM][3:]]:
                     writer.writerow(row)
             elif row[0] == "#CHROM":
                 read_en = True
-                writer.writerow(HEADER)
+                writer.writerow(row)
             else:
                 writer.writerow(row)
     finally:
