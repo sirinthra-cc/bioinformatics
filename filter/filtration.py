@@ -15,7 +15,7 @@ def get_variant_and_depth(filename):
     read_en = False
     variant = dict()
     for chro in CHR:
-        variant[chro] = set()
+        variant[chro] = dict()
 
     for row in list(open(filename, "r")):
         words = row.strip().split()
@@ -23,8 +23,7 @@ def get_variant_and_depth(filename):
             chro = words[CHROM][3:]
             pos = int(words[POS])
             if words[QUAL] != '.':
-                variant[chro].add(pos)
-
+                variant[chro][pos] = [words[REF], words[ALT]]
         if words[CHROM] == "#CHROM":
             read_en = True
     return variant
@@ -47,11 +46,11 @@ def filtration(var_file, mode_revel, mode_exac, mode_thwe, output_name):
             if read_en:
                 chro = words[CHROM][3:]
                 pos = int(words[POS])
-                # print(words[REVEL_SCORE])
                 revel_score = float(words[REVEL_SCORE])
                 if revel_score < 0.05:
                     try:
-                        var_dict[chro].remove(pos)
+                        if var_dict[chro][pos] == [words[REF], words[ALT]]:
+                            var_dict[chro].pop(pos, None)
                     except KeyError:
                         pass
             if words[CHROM] == 'chr':
@@ -63,14 +62,13 @@ def filtration(var_file, mode_revel, mode_exac, mode_thwe, output_name):
         for row in csv.reader(iter(f.readline, '')):
             srow = "".join(row)
             words = srow.split()
-            # print(words)
             if read_en:
                 chro = words[CHROM][3:]
                 pos = int(words[POS])
                 ac = get_ac(words[INFO])
                 if ac > 10:
                     try:
-                        var_dict[chro].remove(pos)
+                        var_dict[chro].pop(pos, None)
                     except KeyError:
                         pass
             if words[CHROM] == '#CHROM':
@@ -82,14 +80,13 @@ def filtration(var_file, mode_revel, mode_exac, mode_thwe, output_name):
         for row in csv.reader(iter(f.readline, '')):
             srow = "".join(row)
             words = srow.split()
-            # print(words)
             if read_en:
                 chro = words[CHROM][3:]
                 pos = int(words[POS])
                 ac = get_ac(words[INFO])
                 if ac > 1:
                     try:
-                        var_dict[chro].remove(pos)
+                        var_dict[chro].pop(pos, None)
                     except KeyError:
                         pass
             if words[CHROM] == '#CHROM':
@@ -113,7 +110,7 @@ def write_file(var_file, to_be_written_dict, output_path):
                     writer.writerow(row)
             elif row[0] == "#CHROM":
                 read_en = True
-                writer.writerow(row)
+                writer.writerow(HEADER)
             else:
                 writer.writerow(row)
     finally:

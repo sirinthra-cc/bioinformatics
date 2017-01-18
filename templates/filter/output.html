@@ -22,19 +22,21 @@
             <table class="table table-bordered fixed_headers">
                 <thead>
                     <tr>
-                        <th style="max-width: 80px; min-width: 80px">CHROM</th>
-                        <th style="max-width: 100px; min-width: 100px">POS</th>
-                        <th style="max-width: 100px; min-width: 100px">REF</th>
-                        <th style="max-width: 100px; min-width: 100px">ALT</th>
+                        <th style="max-width: 220px; min-width: 220px">CHROM</th>
+                        <th style="max-width: 220px; min-width: 220px">POS</th>
+                        <th style="max-width: 220px; min-width: 220px">REF</th>
+                        <th style="max-width: 220px; min-width: 220px">ALT</th>
+                        <th style="max-width: 220px; min-width: 220px">DP</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for output in output_list %}
                         <tr>
-                            <td style="max-width: 80px; min-width: 80px">{{ output.chrom }}</td>
-                            <td style="max-width: 100px; min-width: 100px">{{ output.pos }}</td>
-                            <td style="max-width: 100px; min-width: 100px">{{ output.ref }}</td>
-                            <td style="max-width: 100px; min-width: 100px">{{ output.alt }}</td>
+                            <td style="max-width: 220px; min-width: 220px">{{ output.chrom }}</td>
+                            <td style="max-width: 220px; min-width: 220px">{{ output.pos }}</td>
+                            <td style="max-width: 220px; min-width: 220px">{{ output.ref }}</td>
+                            <td style="max-width: 220px; min-width: 220px">{{ output.alt }}</td>
+                            <td style="max-width: 220px; min-width: 220px">{{ output.dp }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
