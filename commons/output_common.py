@@ -1,5 +1,4 @@
-import os
-from tools.ExtractINFO_And_SpecifyGenes.export import export_specify_gene
+from config.settings import BASE_DIR
 
 
 class Output:
@@ -34,9 +33,7 @@ def get_dp(info, g):
 def get_output_list(output_name):
     output_list = []
     read_en = False
-    file_path = 'output/' + output_name + '.vcf'
-    if not os.path.exists(file_path):
-        export_specify_gene(output_name)
+    file_path = BASE_DIR + '/output/' + output_name + '.vcf'
     for row in list(open(file_path, "r")):
         words = row.strip().split()
         if read_en:

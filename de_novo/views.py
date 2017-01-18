@@ -17,9 +17,9 @@ def index(request):
             child = form.cleaned_data['child']
             mother = form.cleaned_data['mother']
             father = form.cleaned_data['father']
+            name = form.cleaned_data['output_name'] ##***********
 
-            de_novo.de_novo([child,], mother_file=mother, father_file=father, exac_file=ExAC, exac_ac=10,
-                            thwes_file=THWES153, thwes_ac=1)
+            de_novo.de_novo([child,], mother_file=mother, father_file=father, output_name=name)
             return HttpResponseRedirect('/de-novo/')
         else:
             print("invalid")
