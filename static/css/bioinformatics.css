@@ -11,7 +11,7 @@ td, th {
   white-space: nowrap;
 }
 thead > tr, tbody{
-    display:block;
+    display: block;
 }
 .fixed_headers > thead > tr {
     display: block;
