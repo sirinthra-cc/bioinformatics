@@ -39,7 +39,7 @@
                 </thead>
                 <tbody>
                     {% for output in output_list %}
-                        <tr {% if output.ref == 'A' %}style="color: #ee3148"{% endif %}>
+                        <tr>
                             <td style="max-width: 80px; min-width: 80px">{{ output.chrom }}</td>
                             <td style="max-width: 100px; min-width: 100px">{{ output.pos }}</td>
                             <td style="max-width: 100px; min-width: 100px">{{ output.ref }}</td>

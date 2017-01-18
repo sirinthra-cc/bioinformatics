@@ -8,7 +8,7 @@ import subprocess
 from config.settings import BASE_DIR
 from .restruct_HP import hp_id_search
 
-from commons.output import get_output_list
+from commons.output_exomiser import get_output_list
 
 
 CHROM = 0; POS = 1; ID = 2; REF = 3; ALT = 4; QUAL = 5; FILTER = 6; INFO = 7; FORMAT = 8; G = 9

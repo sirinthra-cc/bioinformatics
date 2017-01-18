@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
-from commons.output import get_output_list
+from commons.output_exomiser import get_output_list
 from .forms import ExomeWalkerForm, EntrezSearchForm
 import subprocess
 from config.settings import BASE_DIR
