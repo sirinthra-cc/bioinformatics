@@ -1,0 +1,21 @@
+{% load widget_tweaks %}
+
+<div class="form-group row {% if element.errors %}has-error{% endif %}">
+    <label class="col-md-3 form-control-label" for="text-input">{{ element.label_tag }}</label>
+    <div class="col-md-9">
+        {% if element.errors and not hide_errors %}
+            <label class="switch switch-icon switch-pill switch-success">
+                {% render_field element class+="switch-input error" class+=element_class %}
+                <span class="switch-label" data-off="  " data-on="  "></span>
+                <span class="switch-handle"></span>
+            </label>
+            <small class="help-block">{% for error in element.errors %}{{ error }}{% endfor %}</small>
+        {% else %}
+            <label class="switch switch-icon switch-pill switch-success">
+                {% render_field element class+="switch-input error" class+=element_class %}
+                <span class="switch-label" data-off="  " data-on="  "></span>
+                <span class="switch-handle"></span>
+            </label>
+        {% endif %}
+    </div>
+</div>

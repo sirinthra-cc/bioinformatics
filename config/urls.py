@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^de-novo/', include('de_novo.urls')),
     url(r'^hiphive/', include('hiphive.urls')),
     url(r'^exomewalker/', include('exomewalker.urls')),
+    url(r'^filter/', include('filter.urls')),
     url(r'^admin/', admin.site.urls),
 ]

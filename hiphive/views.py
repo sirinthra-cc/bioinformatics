@@ -1,3 +1,6 @@
+import json
+
+from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import HiPhiveForm, HPOSearchForm
@@ -17,7 +20,6 @@ compile_list = ['java', '-Xms2g', '-Xmx4g', '-jar', BASE_DIR+'\\tools\\exomiser-
 def index(request):
     hiphive_form = None
     search_form = None
-    search_results = []
     if request.method == 'POST':
         if 'hiphive' in request.POST:
             hiphive_form = HiPhiveForm(request.POST, prefix='hiphive')
@@ -37,11 +39,13 @@ def index(request):
                 return HttpResponseRedirect('/hiphive/output/' + output_name)
             else:
                 print("hiphive form invalid")
-        elif 'search' in request.POST:
+        elif 'search-search_string' in request.POST:
             hiphive_form = HiPhiveForm(prefix='hiphive')
             search_form = HPOSearchForm(request.POST, prefix='search')
             if search_form.is_valid():
                 search_results = hp_id_search(search_form.cleaned_data['search_string'])
+                print(json.dumps({'search_results': search_results}))
+                return HttpResponse(json.dumps({'search_results': search_results}))
             else:
                 print("search form invalid")
 
@@ -49,8 +53,7 @@ def index(request):
         hiphive_form = HiPhiveForm(prefix='hiphive')
         search_form = HPOSearchForm(prefix='search')
     return render(request, 'hiphive/index.html', {'form': hiphive_form,
-                                                  'search_form': search_form,
-                                                  'search_results': search_results})
+                                                  'search_form': search_form})
 
 
 def output(request, output_name):

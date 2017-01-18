@@ -47,17 +47,7 @@
                 <div class="card-block">
                     {% include 'snippets/normal_field_non_inline.html' with element=search_form.search_string %}
                     <button type="submit" name="search" class="btn btn-sm btn-secondary" id="search">Search</button>
-                    {% if search_results %}
-                        <div style="max-height: 300px; overflow-y: auto; margin-top: 20px;">
-                            {% for search_result in search_results %}
-                                <button type="button" class="btn btn-sm btn-primary col-lg-12"
-                                        id="{{ search_result.0 }}" ondblclick="selectID(id)"
-                                        style="text-align:left; padding-left:6px">
-                                    {{ search_result.0 }} - {{ search_result.1 }}
-                                </button>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
+                    <div style="max-height: 300px; overflow-y: auto; margin-top: 20px;" id="search_results"></div>
                 </div>
             </form>
         </div>
@@ -67,6 +57,31 @@
 {% block my-script %}
     <script type="text/javascript">
         $(document).ready(function(){
+            $('#search_form').submit(function() {
+                $.ajax({
+                    data: $(this).serialize(),
+                    type: $(this).attr('method'),
+                    url: $(this).attr('action'),
+                    success: function(response) {
+                        var jsonData = JSON.parse(response);
+                        var search_results = jsonData.search_results;
+                        $('.search_result_btn').remove();
+                        $('.search_not_found').remove();
+                        if(search_results.length == 0)
+                            $('#search_results').append('<div class="help-block search_not_found">Not found</div>');
+                        for(var i=0; i<search_results.length; i++) {
+                            var btn = '<button type="button" ' +
+                                'class="btn btn-sm btn-primary col-lg-12 search_result_btn"' +
+                                'id=' + search_results[i][0] + ' ondblclick="selectID(id)"' +
+                                'style="text-align:left; padding-left:6px">' +
+                                search_results[i][0] + ' - ' + search_results[i][1] + '</button>';
+                            $('#search_results').append(btn);
+                        }
+                    }
+                });
+                return false;
+            });
+
             $("#submit").on("click", function(){
                 $("#id_hiphive-input").val($("#input-file").val());
             });

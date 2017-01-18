@@ -6,6 +6,9 @@ class ExomeWalkerForm(forms.Form):
     entrez = forms.CharField(label='Entrez ID', widget=forms.Textarea)
     output_name = forms.CharField(label='Output name', max_length=100)
 
+    # for ped
+
+
 
 class EntrezSearchForm(forms.Form):
-    search_string = forms.CharField(label="Disease Name")
+    search_string = forms.CharField(label="Gene Symbol")

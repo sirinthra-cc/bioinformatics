@@ -2,17 +2,20 @@ import mygene
 
 
 def entrez_id_search(gene_symbol):
-
     mg = mygene.MyGeneInfo()
+    entrez_id_list = []
+    gene_infos = mg.query('symbol:'+gene_symbol, species='human')
+    all_gene_infos = mg.query('symbol:' + gene_symbol + '*', species='human')
+    for hit in gene_infos['hits']:
+        if 'entrezgene' in hit:
+            entrez_id_list.append((hit['entrezgene'], hit['symbol'], hit['name']))
+    for hit in all_gene_infos['hits']:
+        if 'entrezgene' in hit:
+            entrez_id = (hit['entrezgene'], hit['symbol'], hit['name'])
+            if not entrez_id in entrez_id_list:
+                entrez_id_list.append(entrez_id)
+    return entrez_id_list
 
-    gene_info = mg.query('symbol:'+gene_symbol, species='human')
-    if 'hits' in gene_info:
-        if len(gene_info['hits']) > 0:
-            if 'entrezgene' in gene_info['hits'][0]:
-                return gene_info['hits'][0]['entrezgene']
-
-    return 'not found'
-
-# print(entrez_id_search('cdk2'))
+# print(entrez_id_search('cdk*'))
 # print(entrez_id_search('fam83h'))
 # print(entrez_id_search('jijy'))

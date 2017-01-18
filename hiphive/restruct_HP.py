@@ -22,7 +22,7 @@ def hp_id_search(keyword):
     for x in data:
         for y in data[x]:
             if y.find(keyword, 0, len(y)) > 0:
-                result.append(("HP: "+x, data[x][0]))
+                result.append(("HP:"+x, data[x][0]))
                 break
 
     return result
