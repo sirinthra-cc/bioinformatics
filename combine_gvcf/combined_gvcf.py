@@ -66,7 +66,10 @@ def combined_gvcf(flist, outname):
                             Diff[iterate] = list(Diff[iterate]) + [s[2]] + [s[3]] # + id and reference
                         getFormat = s[8].split(':')
                         data = s[9].split(':')
-                        Diff[iterate] = Diff[iterate][:(3+fileNumber)] + [s[3] + "/" + s[4][:-10]] + Diff[iterate][(3+fileNumber):]
+                        if (s[4][-9:] == '<NON_REF>'):
+                            Diff[iterate] = Diff[iterate][:(3+fileNumber)] + [s[3] + "/" + s[4][:-10]] + Diff[iterate][(3+fileNumber):]
+                        else:
+                            Diff[iterate] = Diff[iterate][:(3+fileNumber)] + [s[3] + "/" + s[4][:]] + Diff[iterate][(3+fileNumber):]
                         try:
                             Diff[iterate] = Diff[iterate][:(3+fileNumber * 2)] + [data[getFormat.index("GT")]] + Diff[iterate][(3+fileNumber * 2):]
                         except ValueError:
