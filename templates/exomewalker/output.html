@@ -46,7 +46,14 @@
                             <td style="max-width: 100px; min-width: 100px">{{ output.alt }}</td>
                             <td style="max-width: 50px; min-width: 50px">{{ output.dp }}</td>
                             <td style="max-width: 110px; min-width: 110px">{{ output.gene_name }}</td>
-                            <td style="max-width: 90px; min-width: 90px">{{ output.gene_type }}</td>
+                            <td style="max-width: 90px; min-width: 90px">
+                                <span class="tag
+                                        {% if output.gene_type == 'candidate' %}tag-success
+                                        {% elif output.gene_type == 'target' %}tag-warning
+                                        {% elif output.gene_type == 'novel' %}tag-danger{% endif %}">
+                                    {{ output.gene_type }}
+                                </span>
+                            </td>
                             <td style="max-width: 140px; min-width: 140px">{{ output.gene_combined_score }}</td>
                             <td style="max-width: 140px; min-width: 140px">{{ output.gene_pheno_score }}</td>
                             <td style="max-width: 140px; min-width: 140px">{{ output.gene_variant_score }}</td>
