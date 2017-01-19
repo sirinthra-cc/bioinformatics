@@ -1,8 +1,13 @@
+import csv
 import json
+from _csv import QUOTE_NONE
 
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+from django.http import StreamingHttpResponse
 from django.shortcuts import render
+
+from commons.export_csv import Echo, get_streaming_response
 from .forms import HiPhiveForm, HPOSearchForm
 import subprocess
 from config.settings import BASE_DIR
@@ -58,7 +63,9 @@ def index(request):
 
 def output(request, output_name):
     output_list = get_output_list(output_name)
-    return render(request, 'hiphive/output.html', {'output_list': output_list})
+    return render(request, 'hiphive/output.html', {'output_list': output_list, 'output_name': output_name})
 
 
-
+def export(request, output_name):
+    output_path = BASE_DIR + '/output/' + output_name + '.vcf'
+    return get_streaming_response(output_name, output_path)
