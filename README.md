@@ -1,3 +1,4 @@
+
 # bioinformatics
 
 
@@ -15,10 +16,23 @@ In case you have Anaconda:
     activate yourenvname
     
 ### Installation
-cd to project path (to the folder that has requirements.txt)
+
+Backend
+
+cd to project_path (the folder that contains requirements.txt)
 
     pip install -r requirements.txt
+    
+Frontend
 
+If you don't have Node.js installed in your system, you can download it here:
+https://nodejs.org/en/
+
+cd to project_path/static
+
+    npm install -g bower
+    bower install
+    
 ### Start program
     python manage.py runserver
 
