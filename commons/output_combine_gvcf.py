@@ -18,7 +18,7 @@ def get_output_list(output_name):
     count = 0
     for row in list(open(file_path, "r")):
         words = row.strip().split()
-        if count == 1000:
+        if count == 500:
             break
         if read_en:
             output = Output(column_list=words)
