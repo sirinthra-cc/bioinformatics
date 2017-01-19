@@ -40,7 +40,7 @@ def filtration(var_file, output_name, revel_max=None, exac_min=None, thwe_min=No
     var_dict = get_variant_and_depth(var_file)
     output_path = BASE_DIR + '/output/' + output_name + '.vcf'
     read_en = False
-    if mode_revel:
+    if revel_max:
         f = open(revel_ref, 'r')
         for words in csv.reader(iter(f.readline, '')):
             if read_en:
@@ -57,7 +57,7 @@ def filtration(var_file, output_name, revel_max=None, exac_min=None, thwe_min=No
                 read_en = True
 
     read_en = False
-    if mode_exac:
+    if exac_min:
         f = open(exac_ref, 'r')
         for row in csv.reader(iter(f.readline, '')):
             srow = "".join(row)
@@ -66,7 +66,7 @@ def filtration(var_file, output_name, revel_max=None, exac_min=None, thwe_min=No
                 chro = words[CHROM][3:]
                 pos = int(words[POS])
                 ac = get_ac(words[INFO])
-                if exac_min > 10:
+                if ac > exac_min:
                     try:
                         var_dict[chro].pop(pos, None)
                     except KeyError:
@@ -75,7 +75,7 @@ def filtration(var_file, output_name, revel_max=None, exac_min=None, thwe_min=No
                 read_en = True
 
     read_en = False
-    if mode_thwe:
+    if thwe_min:
         f = open(thwe_ref, 'r')
         for row in csv.reader(iter(f.readline, '')):
             srow = "".join(row)
@@ -84,7 +84,7 @@ def filtration(var_file, output_name, revel_max=None, exac_min=None, thwe_min=No
                 chro = words[CHROM][3:]
                 pos = int(words[POS])
                 ac = get_ac(words[INFO])
-                if thwe_min > 1:
+                if ac > thwe_min:
                     try:
                         var_dict[chro].pop(pos, None)
                     except KeyError:

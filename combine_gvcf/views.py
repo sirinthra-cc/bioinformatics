@@ -9,7 +9,7 @@ from .combined_gvcf import combined_gvcf
 
 
 def index(request):
-    InputFormSet = formset_factory(InputForm,extra=2)
+    InputFormSet = formset_factory(InputForm, extra=2)
     if request.method == 'POST':
         form = CombineGvcfForm(request.POST)
         formset = InputFormSet(request.POST)
