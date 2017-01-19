@@ -80,6 +80,7 @@ def combined_gvcf(flist, outname):
                             Diff[iterate] = Diff[iterate][:(3+fileNumber * 2)] + ["NULL"] + Diff[iterate][(3+fileNumber * 2):]
                         
                         #DP
+                        info = s[7]
                         start = info.find('DP=')
                         start = start + 3
                         end = info.find(';',start)

@@ -17,8 +17,8 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-    # url(r'^$', include('hiphive.urls')),
-    url(r'^combine-gvcf', include('combine_gvcf.urls')),
+    url(r'^$', include('filter.urls')),
+    url(r'^combine-gvcf/', include('combine_gvcf.urls')),
     url(r'^de-novo/', include('de_novo.urls')),
     url(r'^hiphive/', include('hiphive.urls')),
     url(r'^exomewalker/', include('exomewalker.urls')),
