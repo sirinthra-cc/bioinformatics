@@ -45,7 +45,9 @@
                             <td style="max-width: 100px; min-width: 100px">{{ output.ref }}</td>
                             <td style="max-width: 100px; min-width: 100px">{{ output.alt }}</td>
                             <td style="max-width: 50px; min-width: 50px">{{ output.dp }}</td>
-                            <td style="max-width: 110px; min-width: 110px">{{ output.gene_name }}</td>
+                            <td style="max-width: 110px; min-width: 110px">
+                                <a href="http://www.genecards.org/cgi-bin/carddisp.pl?gene={{ output.gene_name }}">
+                                {{ output.gene_name }}</a></td>
                             <td style="max-width: 90px; min-width: 90px">
                                 <span class="tag
                                         {% if output.gene_type == 'candidate' %}tag-success
