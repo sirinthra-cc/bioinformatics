@@ -19,7 +19,6 @@ click==6.6
 cloudpickle==0.2.1
 clyent==1.2.2
 colorama==0.3.7
-comtypes==1.1.2
 configobj==5.0.6
 contextlib2==0.5.3
 cryptography==1.5
@@ -33,7 +32,6 @@ dill==0.2.5
 Django==1.10.4
 django-widget-tweaks==1.4.1
 docutils==0.12
-dynd===c328ab7
 et-xmlfile==1.0.1
 fastcache==1.0.2
 filelock==2.0.6
@@ -64,7 +62,6 @@ locket==0.2.0
 lxml==3.6.4
 MarkupSafe==0.23
 matplotlib==1.5.3
-menuinst==1.4.1
 mistune==0.7.3
 mpmath==0.19
 multipledispatch==0.4.8
@@ -110,7 +107,6 @@ pyparsing==2.1.4
 pytest==2.9.2
 python-dateutil==2.5.3
 pytz==2016.6.1
-pywin32==220
 PyYAML==3.12
 pyzmq==15.4.0
 QtAwesome==0.3.3

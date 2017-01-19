@@ -36,7 +36,7 @@ def get_ac(info):
     return int(info[start:end])
 
 
-def filtration(var_file, mode_revel, mode_exac, mode_thwe, output_name):
+def filtration(var_file, output_name, revel_max=None, exac_min=None, thwe_min=None):
     var_dict = get_variant_and_depth(var_file)
     output_path = BASE_DIR + '/output/' + output_name + '.vcf'
     read_en = False
@@ -47,7 +47,7 @@ def filtration(var_file, mode_revel, mode_exac, mode_thwe, output_name):
                 chro = words[CHROM][3:]
                 pos = int(words[POS])
                 revel_score = float(words[REVEL_SCORE])
-                if revel_score < 0.05:
+                if revel_score < revel_max:
                     try:
                         if var_dict[chro][pos] == [words[REF], words[ALT]]:
                             var_dict[chro].pop(pos, None)
@@ -66,7 +66,7 @@ def filtration(var_file, mode_revel, mode_exac, mode_thwe, output_name):
                 chro = words[CHROM][3:]
                 pos = int(words[POS])
                 ac = get_ac(words[INFO])
-                if ac > 10:
+                if exac_min > 10:
                     try:
                         var_dict[chro].pop(pos, None)
                     except KeyError:
@@ -84,7 +84,7 @@ def filtration(var_file, mode_revel, mode_exac, mode_thwe, output_name):
                 chro = words[CHROM][3:]
                 pos = int(words[POS])
                 ac = get_ac(words[INFO])
-                if ac > 1:
+                if thwe_min > 1:
                     try:
                         var_dict[chro].pop(pos, None)
                     except KeyError:
