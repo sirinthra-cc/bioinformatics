@@ -7,8 +7,8 @@ CHR = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14'
        '20', '21', '22', 'X', 'Y']
 HEADER = ['#CHROM', 'POS', 'ID', 'REF', 'ALT', 'QUAL', 'FILTER', 'INFO', 'FORMAT', 'G']
 revel_ref = BASE_DIR + "/database/Revel_all_chromosomes.csv"
-exac_ref = BASE_DIR + "/database/variant.153.csv"
-thwe_ref = BASE_DIR + "/database/variant.153.csv"
+exac_ref = BASE_DIR + "/database/variant.153.vcf"  # TODO change to ExAC path
+thwe_ref = BASE_DIR + "/database/variant.153.vcf"
 
 
 def get_variant_and_depth(filename):
