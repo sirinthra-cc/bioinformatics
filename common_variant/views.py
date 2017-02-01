@@ -2,10 +2,10 @@ from django.forms import formset_factory
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
-from commons.output_combine_gvcf import get_output_list
+from commons.output_common_variant import get_output_list
 from .forms import CombineGvcfForm, InputForm
 
-from .combined_gvcf import combined_gvcf
+from .common_variant import find_common_variant
 
 
 def index(request):
@@ -20,16 +20,16 @@ def index(request):
                 input_list.append(input_form.cleaned_data['input'])
             output_name = form.cleaned_data['output_name']
             print(input_list)
-            combined_gvcf(input_list, output_name)
-            return HttpResponseRedirect('/combine-gvcf/output/'+output_name)
+            find_common_variant(input_list, output_name)
+            return HttpResponseRedirect('/common-variant/output/'+output_name)
         else:
             print("invalid")
     else:
         form = CombineGvcfForm()
         formset = InputFormSet()
-    return render(request, 'combine_gvcf/index.html', {'form': form, 'formset': formset})
+    return render(request, 'common_variant/index.html', {'form': form, 'formset': formset})
 
 
 def output(request, output_name):
     output_list = get_output_list(output_name)
-    return render(request, 'combine_gvcf/output.html', {'output_list': output_list})
+    return render(request, 'common_variant/output.html', {'output_list': output_list})
