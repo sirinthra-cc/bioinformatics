@@ -22,11 +22,19 @@ def index(request):
         form = FilterForm(request.POST)
         if form.is_valid():
             input_file = form.cleaned_data['input']
+
             filter_by_exac = form.cleaned_data['filter_by_exac']
+            exac_max = form.cleaned_data['exac_max'] if filter_by_exac else None
+
             filter_by_thwes = form.cleaned_data['filter_by_thwes']
+            thwes_max = form.cleaned_data['thwes_max'] if filter_by_thwes else None
+
             filter_by_revel = form.cleaned_data['filter_by_revel']
+            revel_min = form.cleaned_data['revel_min'] if filter_by_revel else None
+
             output_name = form.cleaned_data['output_name']
-            filtration(input_file, filter_by_revel, filter_by_exac, filter_by_thwes, output_name)
+
+            filtration(input_file, output_name, revel_min=revel_min, exac_max=exac_max, thwe_max=thwes_max)
             # if __name__ == '__main__':
             # p = Process(target=filtration,
             #             args=(input_file, filter_by_revel, filter_by_exac, filter_by_thwes, output_name))
