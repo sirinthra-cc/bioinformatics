@@ -33,7 +33,7 @@ def index(request):
             revel_min = form.cleaned_data['revel_min'] if filter_by_revel else None
 
             output_name = form.cleaned_data['output_name']
-
+            # print(revel_min, exac_max, thwes_max)
             filtration(input_file, output_name, revel_min=revel_min, exac_max=exac_max, thwe_max=thwes_max)
             # if __name__ == '__main__':
             # p = Process(target=filtration,
