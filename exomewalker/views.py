@@ -35,6 +35,10 @@ def index(request):
                 input_file = exomewalker_form.cleaned_data['input']
                 entrez = exomewalker_form.cleaned_data['entrez']
                 output_name = exomewalker_form.cleaned_data['output_name']
+
+                targets = exomewalker_form.cleaned_data['targets'].split()
+                candidates = exomewalker_form.cleaned_data['candidates'].split()
+
                 compile_list_1.append(input_file)
                 compile_list_1.append('-o')
                 compile_list_1.append(BASE_DIR+'\\output\\'+output_name)

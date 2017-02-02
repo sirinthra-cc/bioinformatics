@@ -39,7 +39,8 @@ def getEntrez(ref_file,Gene_list_file,output_file):
         gf.close()
         wf.close()
 
-def specify_gene(ref_file,target_list,candidate_list,output_file):
+
+def specify_gene(ref_file, target_list, candidate_list, output_file):
     reff = open(ref_file, 'r')
     #gf = open(Gene_list_file, 'r')
     wf = open(output_file, 'w', newline='')

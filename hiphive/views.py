@@ -35,6 +35,10 @@ def index(request):
                 input_file = hiphive_form.cleaned_data['input']
                 hpo = hiphive_form.cleaned_data['hpo']
                 output_name = hiphive_form.cleaned_data['output_name']
+
+                targets = hiphive_form.cleaned_data['targets'].split()
+                candidates = hiphive_form.cleaned_data['candidates'].split()
+
                 compile_list.append(hpo)
                 compile_list.append('-v')
                 compile_list.append(input_file)
