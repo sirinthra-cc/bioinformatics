@@ -11,6 +11,7 @@ def index(request):
     if request.method == 'POST':
         form = CommonNovelForm(request.POST)
         formset = InputFormSet(request.POST)
+
         if form.is_valid() and formset.is_valid():
             input_list = []
             for input_form in formset:
