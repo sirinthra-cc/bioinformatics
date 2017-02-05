@@ -5,7 +5,7 @@ from sortedcontainers import SortedDict
 from config.settings import BASE_DIR
 
 CHROM = 0; POS = 1; ID = 2; REF = 3; ALT = 4; QUAL = 5; FILTER = 6; INFO = 7; FORMAT = 8; G = 9
-CHR = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19',
+CHR = ['M','1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19',
        '20', '21', '22', 'X', 'Y']
 
 
@@ -19,7 +19,6 @@ def common_novel(input_list, output_name):
         for chro in CHR:
             if files == 0:
                 common_novel[chro] = c_variant[chro]
-                print(c_variant[chro])
             else:
                 common_novel[chro].intersection_update(c_variant[chro])
         files += 1
@@ -52,6 +51,7 @@ def export_vcf(input_file, common_novel, output_name):
 def get_all_info(words, common_novel):
     output_row = []
     chro = words[CHROM][3:]
+
     if int(words[POS]) in common_novel[chro]:
         output_row.extend(words)
     return output_row
@@ -68,7 +68,8 @@ def get_novel_variants(filename):
         if read_en:
             chro = words[CHROM][3:]
             pos = int(words[POS])
-            if words[gene_type-1] == 'novel':
+            # print([gene_type,words[gene_type]])
+            if words[gene_type] == 'novel':
                 variant[chro].add(pos)
         if words[CHROM] == "#CHROM":
             read_en = True
