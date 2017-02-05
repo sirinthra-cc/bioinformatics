@@ -19,6 +19,7 @@ def common_novel(input_list, output_name):
         for chro in CHR:
             if files == 0:
                 common_novel[chro] = c_variant[chro]
+                print(c_variant[chro])
             else:
                 common_novel[chro].intersection_update(c_variant[chro])
         files += 1
@@ -62,18 +63,17 @@ def get_novel_variants(filename):
     gene_type = 0
     for chro in CHR:
         variant[chro] = set()
-        depth[chro] = dict()
     for line in list(open(filename, "r")):
         words = line.strip().split()
         if read_en:
             chro = words[CHROM][3:]
             pos = int(words[POS])
-            if words[gene_type] == 'novel':
+            if words[gene_type-1] == 'novel':
                 variant[chro].add(pos)
         if words[CHROM] == "#CHROM":
             read_en = True
             for word in words:
-                if word == "GENE TYPE":
+                if word == "GENE_TYPE":
                     break
                 gene_type += 1
     return variant
