@@ -3,7 +3,7 @@ import os
 
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from commons.output_exomiser import get_output_list
 from .forms import ExomeWalkerForm, EntrezSearchForm
@@ -45,6 +45,10 @@ def index(request):
                 compile_list = compile_list_1 + compile_list_2
                 compile_list.append(entrez)
                 subprocess.call(compile_list)
+
+                request.session['targets'] = targets
+                request.session['candidates'] = candidates
+
                 return HttpResponseRedirect('/exomewalker/output/'+output_name)
             else:
                 print("exomewalker form invalid")
@@ -64,7 +68,10 @@ def index(request):
 
 
 def output(request, output_name):
-    output_list = get_output_list(output_name)
+    targets = request.session['targets']
+    candidates = request.session['candidates']
+    print(targets, candidates)
+    output_list = get_output_list(output_name, targets, candidates)
     return render(request, 'exomewalker/output.html', {'output_list': output_list})
 
 

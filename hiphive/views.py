@@ -45,6 +45,10 @@ def index(request):
                 compile_list.append('-o')
                 compile_list.append(BASE_DIR + '\\output\\' + output_name)
                 subprocess.call(compile_list)
+
+                request.session['targets'] = targets
+                request.session['candidates'] = candidates
+
                 return HttpResponseRedirect('/hiphive/output/' + output_name)
             else:
                 print("hiphive form invalid")
@@ -66,7 +70,10 @@ def index(request):
 
 
 def output(request, output_name):
-    output_list = get_output_list(output_name)
+    targets = request.session['targets']
+    candidates = request.session['candidates']
+    print(targets, candidates)
+    output_list = get_output_list(output_name, targets, candidates)
     return render(request, 'hiphive/output.html', {'output_list': output_list, 'output_name': output_name})
 
 
