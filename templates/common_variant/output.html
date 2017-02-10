@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Filter</li>
+        <li class="breadcrumb-item active">Output</li>
+        <li class="breadcrumb-menu">
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
+            </div>
+        </li>
+    </ol>
+{% endblock %}
+
+{% block main-container %}
+    <div class="card">
+        <div class="card-header">
+            <i class="fa fa-align-justify"></i> Filter Output
+        </div>
+        <div class="card-block">
+            <table class="table table-bordered fixed_headers">
+                <thead>
+                    <tr>
+                        {% for header in output_list.0.column_list %}
+                            <th style="max-width: 100px; min-width: 100px">{{ header }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for output in output_list %}
+                        {% if output != output_list.0 %}
+                            <tr>
+                                {% for content in output.column_list %}
+                                    <td style="max-width: 100px; min-width: 100px">{{ content }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block my-script %}
+    <script type="text/javascript">
+        $('table').on('scroll', function () {
+            $("table > *").width($("table").width() + $("table").scrollLeft());
+        });
+    </script>
+{% endblock %}

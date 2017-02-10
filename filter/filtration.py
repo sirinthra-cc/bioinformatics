@@ -7,8 +7,8 @@ CHR = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14'
        '20', '21', '22', 'X', 'Y']
 HEADER = ['#CHROM', 'POS', 'ID', 'REF', 'ALT', 'QUAL', 'FILTER', 'INFO', 'FORMAT', 'G']
 revel_ref = BASE_DIR + "/database/Revel_all_chromosomes.csv"
-exac_ref = BASE_DIR + "/database/variant.153.csv"
-thwe_ref = BASE_DIR + "/database/variant.153.csv"
+exac_ref = BASE_DIR + "/database/variant.153.vcf"  # TODO change to ExAC path
+thwe_ref = BASE_DIR + "/database/variant.153.vcf"
 
 
 def get_variant_and_depth(filename):
@@ -36,18 +36,18 @@ def get_ac(info):
     return int(info[start:end])
 
 
-def filtration(var_file, output_name, revel_max=None, exac_min=None, thwe_min=None):
+def filtration(var_file, output_name, revel_min=None, exac_max=None, thwe_max=None):
     var_dict = get_variant_and_depth(var_file)
     output_path = BASE_DIR + '/output/' + output_name + '.vcf'
     read_en = False
-    if revel_max:
+    if revel_min:
         f = open(revel_ref, 'r')
         for words in csv.reader(iter(f.readline, '')):
             if read_en:
                 chro = words[CHROM][3:]
                 pos = int(words[POS])
                 revel_score = float(words[REVEL_SCORE])
-                if revel_score < revel_max:
+                if revel_score < revel_min:
                     try:
                         if var_dict[chro][pos] == [words[REF], words[ALT]]:
                             var_dict[chro].pop(pos, None)
@@ -57,7 +57,7 @@ def filtration(var_file, output_name, revel_max=None, exac_min=None, thwe_min=No
                 read_en = True
 
     read_en = False
-    if exac_min:
+    if exac_max:
         f = open(exac_ref, 'r')
         for row in csv.reader(iter(f.readline, '')):
             srow = "".join(row)
@@ -66,7 +66,7 @@ def filtration(var_file, output_name, revel_max=None, exac_min=None, thwe_min=No
                 chro = words[CHROM][3:]
                 pos = int(words[POS])
                 ac = get_ac(words[INFO])
-                if ac > exac_min:
+                if ac > exac_max:
                     try:
                         var_dict[chro].pop(pos, None)
                     except KeyError:
@@ -75,7 +75,7 @@ def filtration(var_file, output_name, revel_max=None, exac_min=None, thwe_min=No
                 read_en = True
 
     read_en = False
-    if thwe_min:
+    if thwe_max:
         f = open(thwe_ref, 'r')
         for row in csv.reader(iter(f.readline, '')):
             srow = "".join(row)
@@ -84,7 +84,7 @@ def filtration(var_file, output_name, revel_max=None, exac_min=None, thwe_min=No
                 chro = words[CHROM][3:]
                 pos = int(words[POS])
                 ac = get_ac(words[INFO])
-                if ac > thwe_min:
+                if ac > thwe_max:
                     try:
                         var_dict[chro].pop(pos, None)
                     except KeyError:

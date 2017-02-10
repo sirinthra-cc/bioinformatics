@@ -18,10 +18,11 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^$', include('filter.urls')),
-    url(r'^combine-gvcf/', include('combine_gvcf.urls')),
+    url(r'^common-variant/', include('common_variant.urls')),
     url(r'^de-novo/', include('de_novo.urls')),
     url(r'^hiphive/', include('hiphive.urls')),
     url(r'^exomewalker/', include('exomewalker.urls')),
+    url(r'^common-novel/', include('common_novel.urls')),
     url(r'^filter/', include('filter.urls')),
     url(r'^admin/', admin.site.urls),
 ]
