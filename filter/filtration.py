@@ -7,7 +7,7 @@ CHR = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14'
        '20', '21', '22', 'X', 'Y']
 HEADER = ['#CHROM', 'POS', 'ID', 'REF', 'ALT', 'QUAL', 'FILTER', 'INFO', 'FORMAT', 'G']
 revel_ref = BASE_DIR + "/database/Revel_all_chromosomes.csv"
-exac_ref = BASE_DIR + "/database/variant.153.vcf"  # TODO change to ExAC path
+exac_ref = BASE_DIR + "/database/ExAC.r0.3.1.sites.vep.vcf"
 thwe_ref = BASE_DIR + "/database/variant.153.vcf"
 
 

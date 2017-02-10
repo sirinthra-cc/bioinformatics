@@ -74,6 +74,7 @@ def output(request, output_name):
     candidates = request.session['candidates']
     print(targets, candidates)
     output_list = get_output_list(output_name, targets, candidates)
+    print(len(output_list))
     return render(request, 'hiphive/output.html', {'output_list': output_list, 'output_name': output_name})
 
 
