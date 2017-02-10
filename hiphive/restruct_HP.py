@@ -1,7 +1,7 @@
 def hp_id_search(keyword):
 
     hp_file = open("database/hp2.obo", 'r')
-    omim_file = open("/database/OMIM_ALL_FREQUENCIES_diseases_to_genes_to_phenotypes.txt",'r')
+    omim_file = open("database/OMIM_ALL_FREQUENCIES_diseases_to_genes_to_phenotypes.txt", 'r')
     lines = tuple(omim_file)
     data = dict()
     result = []
