@@ -74,7 +74,7 @@ def get_novel_variants(filename):
         if words[CHROM] == "#CHROM":
             read_en = True
             for word in words:
-                if word == "GENE_TYPE":
+                if word == "gene_type":
                     break
                 gene_type += 1
     return variant
