@@ -1,8 +1,8 @@
 {% load widget_tweaks %}
 
-<div class="form-group row {% if element.errors %}has-error{% endif %}">
+{#<div class="form-group row {% if element.errors %}has-error{% endif %}">#}
     <label class="col-md-3 form-control-label" for="text-input">{{ element.label_tag }}</label>
-    <span class="col-md-9">
+    <span class="col-md-1" style="width: 70px;">
         {% if element.errors and not hide_errors %}
             <label class="switch switch-icon switch-pill switch-success">
                 {% render_field element class+="switch-input error" class+=element_class %}
@@ -18,4 +18,4 @@
             </label>
         {% endif %}
     </span>
-</div>
+{#</div>#}

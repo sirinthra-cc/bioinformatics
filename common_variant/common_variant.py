@@ -21,7 +21,7 @@ def byChromosome(tup):
 # combined gvcf function
 # flist = list of gvcf file to be combined
 # outname = name of output file (default is 'combined.vcf')
-def combined_gvcf(flist, outname):
+def find_common_variant(flist, outname):
     Diff = set()
     cacheGene = set()
     # Find intersected differences

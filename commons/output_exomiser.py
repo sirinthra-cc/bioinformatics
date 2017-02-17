@@ -40,12 +40,12 @@ EXOMISER_GENE_VARIANT_SCORE = None
 EXOMISER_VARIANT_SCORE = None
 
 
-def get_output_list(output_name):
+def get_output_list(output_name, targets, candidates):
     output_list = []
     read_en = False
     file_path = 'output/' + output_name + '-specify-gene.vcf'
     if not os.path.exists(file_path):
-        export_specify_gene(output_name)
+        export_specify_gene(output_name, targets, candidates)
     for row in list(open(file_path, "r")):
         words = row.strip().split()
         if read_en:

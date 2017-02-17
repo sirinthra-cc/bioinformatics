@@ -15,9 +15,19 @@ from .restruct_HP import hp_id_search
 
 from commons.output_exomiser import get_output_list
 
+if BASE_DIR.find("\\",0,1):
+    window_os = True
+else:
+    window_os = False
 
 CHROM = 0; POS = 1; ID = 2; REF = 3; ALT = 4; QUAL = 5; FILTER = 6; INFO = 7; FORMAT = 8; G = 9
-compile_list = ['java', '-Xms2g', '-Xmx4g', '-jar', BASE_DIR+'\\tools\\exomiser-cli-7.2.1\\exomiser-cli-7.2.1.jar',
+
+if window_os:
+    compile_list = ['java', '-Xms2g', '-Xmx4g', '-jar', BASE_DIR+'\\tools\\exomiser-cli-7.2.1\\exomiser-cli-7.2.1.jar',
+                '--prioritiser=hiphive', '-I', 'AD', '-F', '1',  '--full-analysis', 'true', '-f', 'VCF',
+                '--output-pass-variants-only', 'true', '--hpo-ids']
+else:
+    compile_list = ['java', '-Xms2g', '-Xmx4g', '-jar', BASE_DIR+'/tools/exomiser-cli-7.2.1/exomiser-cli-7.2.1.jar',
                 '--prioritiser=hiphive', '-I', 'AD', '-F', '1',  '--full-analysis', 'true', '-f', 'VCF',
                 '--output-pass-variants-only', 'true', '--hpo-ids']
 
@@ -35,12 +45,24 @@ def index(request):
                 input_file = hiphive_form.cleaned_data['input']
                 hpo = hiphive_form.cleaned_data['hpo']
                 output_name = hiphive_form.cleaned_data['output_name']
+
+                targets = hiphive_form.cleaned_data['targets'].split()
+                candidates = hiphive_form.cleaned_data['candidates'].split()
+
                 compile_list.append(hpo)
                 compile_list.append('-v')
                 compile_list.append(input_file)
                 compile_list.append('-o')
-                compile_list.append(BASE_DIR + '\\output\\' + output_name)
+                if window_os:
+                    compile_list.append(BASE_DIR + '\\output\\' + output_name)
+                else:
+                    compile_list.append(BASE_DIR + '/output/' + output_name)
+
                 subprocess.call(compile_list)
+
+                request.session['targets'] = targets
+                request.session['candidates'] = candidates
+
                 return HttpResponseRedirect('/hiphive/output/' + output_name)
             else:
                 print("hiphive form invalid")
@@ -62,7 +84,11 @@ def index(request):
 
 
 def output(request, output_name):
-    output_list = get_output_list(output_name)
+    targets = request.session['targets']
+    candidates = request.session['candidates']
+    print(targets, candidates)
+    output_list = get_output_list(output_name, targets, candidates)
+    print(len(output_list))
     return render(request, 'hiphive/output.html', {'output_list': output_list, 'output_name': output_name})
 
 

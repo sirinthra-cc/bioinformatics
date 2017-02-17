@@ -1,7 +1,7 @@
 def hp_id_search(keyword):
-
+    keyword = keyword.lower()
     hp_file = open("database/hp2.obo", 'r')
-    omim_file = open("/database/OMIM_ALL_FREQUENCIES_diseases_to_genes_to_phenotypes.txt",'r')
+    omim_file = open("database/OMIM_ALL_FREQUENCIES_diseases_to_genes_to_phenotypes.txt", 'r')
     lines = tuple(omim_file)
     data = dict()
     result = []
@@ -34,28 +34,28 @@ def hp_id_search(keyword):
 
     for x in data:
         for y in data[x]:
-            if y[0].find(keyword, 0, len(y[0])) > 0 and y[1] == "name":
+            if y[0].lower().find(keyword, 0, len(y[0])) > 0 and y[1] == "name":
                 result.append(("HP:"+x, data[x][0][0]))
                 data[x] = []
                # print("append name")
                 break
     for x in data:
         for y in data[x]:
-            if y[0].find(keyword, 0, len(y[0])) > 0 and y[1] == "def":
+            if y[0].lower().find(keyword, 0, len(y[0])) > 0 and y[1] == "def":
                 result.append(("HP:"+x, data[x][0][0]))
                 data[x] = []
               #  print("append def")
                 break
     for x in data:
         for y in data[x]:
-            if y[0].find(keyword, 0, len(y[0])) > 0 and y[1] == "alt_id":
+            if y[0].lower().find(keyword, 0, len(y[0])) > 0 and y[1] == "alt_id":
                 result.append(("HP:"+x, data[x][0][0]))
                 data[x] = []
                # print("append alt_id")
                 break
     for x in data:
         for y in data[x]:
-            if y[0].find(keyword, 0, len(y[0])) > 0 and y[1] == "xref":
+            if y[0].lower().find(keyword, 0, len(y[0])) > 0 and y[1] == "xref":
                 result.append(("HP:"+x, data[x][0][0]))
                 data[x] = []
               #  print("append xref")

@@ -17,13 +17,13 @@ def check(list):
     for member in list:
         for element in member:
             if ' ' in member or '\t' in member:
-                return true
-    return false
+                return True
+    return False
 
 def generate_ped(datas, outname):
     if (outname[-4:] != '.ped'):
         outname += '.ped'
-    if (check(member)):
+    if (check(datas)):
         print ("Error: ID contain space you suck")
         sys.exit()
     out = open(outname,'w')
@@ -31,18 +31,18 @@ def generate_ped(datas, outname):
         writeData = ''
         writeData += member[1] + '\t' # Family ID
         writeData += member[0] + '\t' # sample ID
-        writeData += member[2] + '\t' # father ID
-        writeData += member[3] + '\t' # mother ID
+        writeData += str(member[2]) + '\t' # father ID
+        writeData += str(member[3]) + '\t' # mother ID
         if (member[4].lower() == 'male' or member[4].lower() == 'm'):
             writeData += '1\t'
-        else if (member[4].lower() == 'female' or member[4].lower() == 'f'):
+        elif (member[4].lower() == 'female' or member[4].lower() == 'f'):
             writeData += '2\t'
         else:
             writeData += '0\t'
             
         if (member[5].lower() == 'affected'):
             writeData += '2\n'
-        else if (member[5].lower() == 'unaffected'):
+        elif (member[5].lower() == 'unaffected'):
             writeData += '1\n'
         else:
             writeData += '0\n'
@@ -50,4 +50,3 @@ def generate_ped(datas, outname):
         out.write(writeData)
     out.close()
     ## print ('Success!')
-    

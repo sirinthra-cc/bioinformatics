@@ -89,9 +89,9 @@ ENV/
 .ropeproject
 .idea/inspectionProfiles/Project_Default.xml
 output/*
-tools/exomiser-cli-7.2.1/*
-database/ExAC.r0.3.1.sites.vep.csv
+!output/__init___.py
+tools/exomiser-cli-7.2.1/data
 database/ExAC.r0.3.1.sites.vep.vcf
-database/variant.153.csv
 database/variant.153.vcf
 database/Revel_all_chromosomes.csv
+db.sqlite3

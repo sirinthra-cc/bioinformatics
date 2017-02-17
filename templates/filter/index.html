@@ -27,9 +27,18 @@
                 </div>
 
                 <div style="display: none">{% include 'snippets/normal_field.html' with element=form.input %}</div>
-                {% include 'snippets/boolean_field.html' with element=form.filter_by_exac %}
-                {% include 'snippets/boolean_field.html' with element=form.filter_by_thwes %}
-                {% include 'snippets/boolean_field.html' with element=form.filter_by_revel %}
+                <div class="form-group row">
+                    {% include 'snippets/inline_boolean.html' with element=form.filter_by_exac %}
+                    {% include 'snippets/inline_without_field_name.html' with element=form.exac_max %}
+                </div>
+                <div class="form-group row">
+                    {% include 'snippets/inline_boolean.html' with element=form.filter_by_thwes %}
+                    {% include 'snippets/inline_without_field_name.html' with element=form.thwes_max %}
+                </div>
+                <div class="form-group row">
+                    {% include 'snippets/inline_boolean.html' with element=form.filter_by_revel %}
+                    {% include 'snippets/inline_without_field_name.html' with element=form.revel_min %}
+                </div>
                 {% include 'snippets/normal_field.html' with element=form.output_name %}
 
             </div>
@@ -45,6 +54,32 @@
 {% block my-script %}
     <script type="text/javascript">
         $(document).ready(function(){
+            $("#id_exac_max").prop('disabled', true);
+            $("#id_thwes_max").prop('disabled', true);
+            $("#id_revel_min").prop('disabled', true);
+
+            $("#id_filter_by_exac").on("change", function () {
+                if(+$("#id_filter_by_exac").is( ':checked' ) == 0){
+                    $("#id_exac_max").prop('disabled', true);
+                } else {
+                    $("#id_exac_max").prop('disabled', false);
+                }
+            });
+            $("#id_filter_by_thwes").on("change", function () {
+                if(+$("#id_filter_by_thwes").is( ':checked' ) == 0){
+                    $("#id_thwes_max").prop('disabled', true);
+                } else {
+                    $("#id_thwes_max").prop('disabled', false);
+                }
+            });
+            $("#id_filter_by_revel").on("change", function () {
+                if(+$("#id_filter_by_revel").is( ':checked' ) == 0){
+                    $("#id_revel_min").prop('disabled', true);
+                } else {
+                    $("#id_revel_min").prop('disabled', false);
+                }
+            });
+
             $("#submit").on("click", function(){
                 $("#id_input").val($("#input-file").val());
             });
